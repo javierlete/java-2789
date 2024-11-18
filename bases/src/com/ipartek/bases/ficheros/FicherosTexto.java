@@ -22,7 +22,7 @@ public class FicherosTexto {
 		Scanner sc = null;
 
 		try {
-			fr = new FileReader(RUTA_FICHERO + "ttt");
+			fr = new FileReader(RUTA_FICHERO);
 			sc = new Scanner(fr);
 
 			while (sc.hasNext()) {
