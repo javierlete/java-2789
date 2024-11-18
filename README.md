@@ -12,6 +12,5 @@
 # Ejercicios
 
 - Programación Orientada a Objetos
-  - https://puntocomnoesunlenguaje.blogspot.com/
-  - https://puntocomnoesunlenguaje.blogspot.com/p/blog-page.html
- 
+  - Ejercicios básicos: https://puntocomnoesunlenguaje.blogspot.com/p/blog-page.html
+  - Proyecto más avanzado: https://puntocomnoesunlenguaje.blogspot.com/ 
