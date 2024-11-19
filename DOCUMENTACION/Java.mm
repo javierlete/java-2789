@@ -2,7 +2,7 @@
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
 <node TEXT="Java" FOLDED="false" ID="ID_696401721" CREATED="1610381621824" MODIFIED="1731571661088" STYLE="oval">
 <font SIZE="18"/>
-<hook NAME="MapStyle" zoom="2.0">
+<hook NAME="MapStyle">
     <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_tags="UNDER_NODES" associatedTemplateLocation="template:/standard-1.6.mm" fit_to_viewport="false"/>
     <tags category_separator="::"/>
 
@@ -84,7 +84,7 @@
 <node TEXT="Puedo poner el aire acondicionado" ID="ID_199740535" CREATED="1731588337462" MODIFIED="1731588344307"/>
 </node>
 </node>
-<node TEXT="Temario" POSITION="bottom_or_right" ID="ID_1123047812" CREATED="1731588348541" MODIFIED="1731656370362">
+<node TEXT="Temario" POSITION="top_or_left" ID="ID_1123047812" CREATED="1731588348541" MODIFIED="1731656370362">
 <edge COLOR="#00ffff"/>
 <node TEXT="Programación orientada a objetos" ID="ID_1046330787" CREATED="1731588352243" MODIFIED="1731588362178">
 <node TEXT="Herencia" ID="ID_1298768538" CREATED="1731656375345" MODIFIED="1731656381844"/>
@@ -148,7 +148,7 @@
 </node>
 <node TEXT="Spring" ID="ID_346569532" CREATED="1731588459213" MODIFIED="1731588460604"/>
 </node>
-<node TEXT="Eclipse" POSITION="bottom_or_right" ID="ID_1028649231" CREATED="1731571662822" MODIFIED="1731571882686">
+<node TEXT="Eclipse" POSITION="top_or_left" ID="ID_1028649231" CREATED="1731571662822" MODIFIED="1731571882686">
 <edge COLOR="#ff0000"/>
 <font BOLD="true"/>
 <node TEXT="Eclipse Foundation" ID="ID_1635980932" CREATED="1731571875437" MODIFIED="1731571878515"/>
@@ -736,6 +736,213 @@
 <node TEXT="Java" ID="ID_1013004746" CREATED="1731915797934" MODIFIED="1731915798700"/>
 <node TEXT="Object" ID="ID_560739559" CREATED="1731915798840" MODIFIED="1731915800121"/>
 </node>
+<node TEXT="Estructura" ID="ID_1690951019" CREATED="1732001454240" MODIFIED="1732001470417">
+<node TEXT="private" ID="ID_943200131" CREATED="1732001472276" MODIFIED="1732002036746">
+<font BOLD="true"/>
+<node TEXT="Variables de instancia" ID="ID_1102647498" CREATED="1732001485739" MODIFIED="1732001504032"/>
+<node TEXT="¿Qué quiero almacenar?" ID="ID_400347983" CREATED="1732002382836" MODIFIED="1732002387668">
+<font ITALIC="true"/>
+</node>
+</node>
+<node TEXT="public" ID="ID_880007514" CREATED="1732001505016" MODIFIED="1732002035887">
+<font BOLD="true"/>
+<node TEXT="Constructores" ID="ID_291022426" CREATED="1732001506437" MODIFIED="1732001509312">
+<node TEXT="Source/Generate Constructor using Fields..." ID="ID_1055502680" CREATED="1732002201009" MODIFIED="1732002219320">
+<font BOLD="true"/>
+</node>
+<node TEXT="&quot;Constructor principal&quot;" ID="ID_1106240873" CREATED="1732002127096" MODIFIED="1732002140155">
+<font ITALIC="true"/>
+<node TEXT="Recibe el máximo de argumentos" ID="ID_1961715642" CREATED="1732002142748" MODIFIED="1732002151208"/>
+<node TEXT="Setters" ID="ID_84600865" CREATED="1732002187934" MODIFIED="1732002194776">
+<font BOLD="true"/>
+</node>
+</node>
+<node TEXT="Resto de constructores" ID="ID_987513961" CREATED="1732002181295" MODIFIED="1732002184029">
+<node TEXT="this(...)" ID="ID_383994024" CREATED="1732001706721" MODIFIED="1732001722752">
+<font BOLD="true"/>
+<node TEXT="Llamada a constructor de la misma clase" ID="ID_194200238" CREATED="1732001710469" MODIFIED="1732001716765"/>
+</node>
+<node TEXT="Constructor de copia" ID="ID_1880945337" CREATED="1732003183052" MODIFIED="1732003185618">
+<node TEXT="Constructor que recibe como argumento la propia clase en la que se encuentra" ID="ID_1948008741" CREATED="1732003186634" MODIFIED="1732003201865"/>
+<node TEXT="Desmonta los datos y crea un nuevo objeto basado en los mismos" ID="ID_61385742" CREATED="1732003211436" MODIFIED="1732003223781"/>
+</node>
+</node>
+<node TEXT="Constructor vacío" ID="ID_879191595" CREATED="1732002728316" MODIFIED="1732002731354">
+<node TEXT="Se crea automáticamente si no hay ninguno explícito" ID="ID_260973954" CREATED="1732002731604" MODIFIED="1732002746600"/>
+<node TEXT="En cuanto hay un solo constructor explícito ya no se crea automáticamente" ID="ID_792646035" CREATED="1732002747600" MODIFIED="1732002758660"/>
+</node>
+</node>
+<node TEXT="Getters y setters" ID="ID_408844250" CREATED="1732001509452" MODIFIED="1732001512483">
+<node TEXT="Source/Generate Getters and Setters..." ID="ID_1866630592" CREATED="1732002260170" MODIFIED="1732002271422">
+<font BOLD="true"/>
+</node>
+<node TEXT="Tipo getDato()" ID="ID_1504748809" CREATED="1732001727872" MODIFIED="1732001747790">
+<font BOLD="true"/>
+<node TEXT="Excepción" ID="ID_1656836021" CREATED="1732002093226" MODIFIED="1732002095335"/>
+<node TEXT="boolean isDato()" ID="ID_1482176709" CREATED="1732002071450" MODIFIED="1732002076355"/>
+</node>
+<node TEXT="setDato(Tipo dato)" ID="ID_1765109108" CREATED="1732001733415" MODIFIED="1732001747790">
+<font BOLD="true"/>
+<node TEXT="Validaciones" ID="ID_191016807" CREATED="1732002242815" MODIFIED="1732002245533"/>
+</node>
+</node>
+<node TEXT="toString" ID="ID_1380614380" CREATED="1732001512686" MODIFIED="1732001515123">
+<node TEXT="Source/Generate toString..." ID="ID_1056512409" CREATED="1732002274437" MODIFIED="1732002280952">
+<font BOLD="true"/>
+</node>
+<node TEXT="Conversión a texto del objeto" ID="ID_572073003" CREATED="1732001758002" MODIFIED="1732001774074">
+<font BOLD="true"/>
+</node>
+</node>
+<node TEXT="Métodos de instancia" ID="ID_1124788808" CREATED="1732004085757" MODIFIED="1732004119402">
+<node TEXT="Sobrecargas" ID="ID_1440498525" CREATED="1732007017372" MODIFIED="1732007020512">
+<node TEXT="Mismo nombre de método con diferente lista de argumentos" ID="ID_1816365486" CREATED="1732007025136" MODIFIED="1732007035915">
+<node TEXT="En tipo" ID="ID_544326261" CREATED="1732007036133" MODIFIED="1732007037524"/>
+<node TEXT="En número" ID="ID_1296253997" CREATED="1732007037664" MODIFIED="1732007039430"/>
+</node>
+</node>
+</node>
+<node TEXT="Métodos estáticos" ID="ID_1515287749" CREATED="1732004119543" MODIFIED="1732004122230"/>
+</node>
+</node>
+<node TEXT="Modificadores" ID="ID_697190077" CREATED="1732003308027" MODIFIED="1732003311089">
+<node TEXT="Acceso" ID="ID_586870036" CREATED="1732003320860" MODIFIED="1732003322719">
+<node TEXT="public" ID="ID_1069319148" CREATED="1732003311198" MODIFIED="1732003315166">
+<font BOLD="true"/>
+<node TEXT="Accesible desde cualquier clase" ID="ID_76605011" CREATED="1732003374485" MODIFIED="1732003381615"/>
+</node>
+<node TEXT="protected" ID="ID_1272874644" CREATED="1732003390926" MODIFIED="1732007890986">
+<font BOLD="true"/>
+<node TEXT="Accesible desde la propia clase y herencia" ID="ID_1992508125" CREATED="1732007894470" MODIFIED="1732007903421"/>
+<node TEXT="O paquete" ID="ID_356644236" CREATED="1732008038202" MODIFIED="1732008048450"/>
+</node>
+<node TEXT="" ID="ID_1342900936" CREATED="1732003391285" MODIFIED="1732003391285">
+<node TEXT="Accesible desde el mismo paquete" ID="ID_613909535" CREATED="1732007972953" MODIFIED="1732007980420"/>
+</node>
+<node TEXT="private" ID="ID_215961074" CREATED="1732003312979" MODIFIED="1732003315166">
+<font BOLD="true"/>
+<node TEXT="Sólo accesible dentro de la propia clase" ID="ID_885259671" CREATED="1732003326390" MODIFIED="1732003332138"/>
+</node>
+</node>
+<node TEXT="static" ID="ID_160187418" CREATED="1732003398846" MODIFIED="1732003400502">
+<font BOLD="true"/>
+<node TEXT="Para poder usarlo se utiliza el nombre de la clase, y no una referencia concreta (variable)" ID="ID_891096693" CREATED="1732003549126" MODIFIED="1732003562717"/>
+<node TEXT="&quot;De clase&quot;" ID="ID_252239723" CREATED="1732003534956" MODIFIED="1732003542002">
+<font ITALIC="true"/>
+</node>
+<node TEXT="Una vez encontrada la zona de memoria para la variable NO cambia por muchos objetos que se creen" ID="ID_1333792843" CREATED="1732003638414" MODIFIED="1732003656083"/>
+<node TEXT="Compartida" ID="ID_566639167" CREATED="1732003667738" MODIFIED="1732003672425">
+<font ITALIC="true"/>
+</node>
+</node>
+<node TEXT="final" ID="ID_1071774525" CREATED="1732003402126" MODIFIED="1732003403673">
+<font BOLD="true"/>
+<node TEXT="Variable" ID="ID_1692366486" CREATED="1732003418450" MODIFIED="1732003421231">
+<node TEXT="No puede cambiar de valor una vez inicializada" ID="ID_1965372098" CREATED="1732003413124" MODIFIED="1732003433166"/>
+<node TEXT="&quot;Constante&quot;" ID="ID_1220550465" CREATED="1732003437134" MODIFIED="1732003442320">
+<font ITALIC="true"/>
+</node>
+<node TEXT="NOTACION_UNDERSCORE" ID="ID_300187545" CREATED="1732003613313" MODIFIED="1732003618791"/>
+</node>
+<node TEXT="Se pueden inicializar en constructores o bloques estáticos" ID="ID_453911819" CREATED="1732003880205" MODIFIED="1732003887666"/>
+</node>
+</node>
+<node TEXT="this" ID="ID_1942744664" CREATED="1732006523490" MODIFIED="1732006553860">
+<font BOLD="true"/>
+<node TEXT="Objeto desde el cual se ha hecho la llamada u objeto que se está creando" ID="ID_163501143" CREATED="1732006524770" MODIFIED="1732006580338"/>
+</node>
+<node TEXT="Herencia" ID="ID_757662826" CREATED="1732006591492" MODIFIED="1732006592976">
+<node TEXT="extends" ID="ID_540700552" CREATED="1732006593179" MODIFIED="1732006606285">
+<font BOLD="true"/>
+<node TEXT="&quot;Amplía&quot; la clase padre/base" ID="ID_1358290882" CREATED="1732006594975" MODIFIED="1732006604535"/>
+<node TEXT="No se puede hacer herencia múltiple" ID="ID_1323613955" CREATED="1732008821298" MODIFIED="1732008827078">
+<node TEXT="Árbol de herencia de clases" ID="ID_1712892665" CREATED="1732008855271" MODIFIED="1732008898887">
+<font BOLD="true"/>
+</node>
+</node>
+</node>
+<node TEXT="super" ID="ID_1065861060" CREATED="1732006606972" MODIFIED="1732006608597">
+<font BOLD="true"/>
+<node TEXT="this del padre" ID="ID_173087000" CREATED="1732006608894" MODIFIED="1732006613986">
+<font BOLD="true"/>
+</node>
+</node>
+<node TEXT="@Override" ID="ID_231812561" CREATED="1732008695264" MODIFIED="1732008700138">
+<font BOLD="true"/>
+<node TEXT="Redefinir un método del padre" ID="ID_707647865" CREATED="1732008700419" MODIFIED="1732008712337"/>
+</node>
+<node TEXT="TODAS las clases de java tienen padre" ID="ID_631504150" CREATED="1732008745743" MODIFIED="1732008753085">
+<node TEXT="Object" ID="ID_1102833190" CREATED="1732008757350" MODIFIED="1732008766551">
+<font BOLD="true"/>
+<node TEXT="No tiene padre" ID="ID_180074062" CREATED="1732008760193" MODIFIED="1732008762146"/>
+<node TEXT="@Override" ID="ID_879958789" CREATED="1732009644493" MODIFIED="1732009676244">
+<font BOLD="true"/>
+<node TEXT="toString()" ID="ID_790003562" CREATED="1732008994163" MODIFIED="1732008997647">
+<font BOLD="true"/>
+<node TEXT="Representación en texto del objeto" ID="ID_1426985092" CREATED="1732009424920" MODIFIED="1732009429606"/>
+<node TEXT="Por defecto muestra nombre de clase y hashCode" ID="ID_1296113337" CREATED="1732009611985" MODIFIED="1732009619264">
+<font BOLD="true"/>
+</node>
+</node>
+<node TEXT="hashCode()" ID="ID_1680706882" CREATED="1732009033482" MODIFIED="1732009035935">
+<font BOLD="true"/>
+<node TEXT="Resumen en un int de todos los datos del objeto" ID="ID_457498098" CREATED="1732009433621" MODIFIED="1732009457284"/>
+</node>
+<node TEXT="equals()" ID="ID_43837843" CREATED="1732009045402" MODIFIED="1732009047870">
+<font BOLD="true"/>
+<node TEXT="Comparación por contenido de objetos" ID="ID_500057590" CREATED="1732009587591" MODIFIED="1732009593708"/>
+<node TEXT="Por defecto, sólo compara referencias" ID="ID_200685409" CREATED="1732009594505" MODIFIED="1732009605939">
+<font BOLD="true"/>
+</node>
+</node>
+</node>
+<node TEXT="getClass()" ID="ID_475071254" CREATED="1732009113721" MODIFIED="1732009115691">
+<font BOLD="true"/>
+<node TEXT="Devuelve un objeto de tipo Class" ID="ID_1815238356" CREATED="1732009270092" MODIFIED="1732009277031"/>
+<node TEXT="Reflection" ID="ID_439790896" CREATED="1732009281108" MODIFIED="1732009283181"/>
+</node>
+<node TEXT="Threads" ID="ID_1519518635" CREATED="1732009120422" MODIFIED="1732009131732">
+<font ITALIC="true"/>
+<node TEXT="notify()" ID="ID_1160936903" CREATED="1732009122625" MODIFIED="1732009130451">
+<font BOLD="true" ITALIC="true"/>
+</node>
+<node TEXT="wait()" ID="ID_264397853" CREATED="1732009124843" MODIFIED="1732009130482">
+<font BOLD="true" ITALIC="true"/>
+</node>
+</node>
+</node>
+<node TEXT="Si no pones extends" ID="ID_67067110" CREATED="1732008772066" MODIFIED="1732008775418">
+<node TEXT="extends Object" ID="ID_1984567008" CREATED="1732008775543" MODIFIED="1732008778793">
+<font BOLD="true"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="Clases" ID="ID_980465432" CREATED="1732001781693" MODIFIED="1732002026248">
+<font BOLD="true"/>
+<node TEXT="Prototipo" ID="ID_1870991755" CREATED="1732001809543" MODIFIED="1732001819645">
+<font ITALIC="true"/>
+</node>
+<node TEXT="Plano" ID="ID_1980092008" CREATED="1732001816958" MODIFIED="1732001819095">
+<font ITALIC="true"/>
+</node>
+<node TEXT="Molde" ID="ID_775510220" CREATED="1732001828898" MODIFIED="1732001830658">
+<font ITALIC="true"/>
+</node>
+</node>
+<node TEXT="Instancias" ID="ID_300936607" CREATED="1732001786700" MODIFIED="1732002026248">
+<font BOLD="true"/>
+<node TEXT="Objeto creado a partir de una clase a través de un constructor" ID="ID_1855777962" CREATED="1732001903149" MODIFIED="1732001915654"/>
+</node>
+<node TEXT="Objetos" ID="ID_670621738" CREATED="1732001783778" MODIFIED="1732002026248">
+<font BOLD="true"/>
+<node TEXT="Ocupa una zona de memoria específica" ID="ID_66689539" CREATED="1732001848364" MODIFIED="1732001854570"/>
+<node TEXT="Contiene todos los valores particulares de las variables de la clase" ID="ID_202926403" CREATED="1732001857526" MODIFIED="1732001866622"/>
+</node>
+<node TEXT="Referencias" ID="ID_1294730240" CREATED="1732001889004" MODIFIED="1732002026248">
+<font BOLD="true"/>
+<node TEXT="Variables que contienen la dirección de memoria donde se encuentra un objeto en particular" ID="ID_25273724" CREATED="1732001975794" MODIFIED="1732001997365"/>
 </node>
 </node>
 </node>
@@ -772,7 +979,7 @@
 <node TEXT="Interface" ID="ID_1709909661" CREATED="1731673099868" MODIFIED="1731673101399"/>
 </node>
 </node>
-<node TEXT="Buenas prácticas" POSITION="bottom_or_right" ID="ID_705610118" CREATED="1731916181183" MODIFIED="1731916184413">
+<node TEXT="Buenas prácticas" POSITION="top_or_left" ID="ID_705610118" CREATED="1731916181183" MODIFIED="1731916184413">
 <edge COLOR="#7c0000"/>
 <node TEXT="DRY" ID="ID_1344061320" CREATED="1731916184585" MODIFIED="1731916198770">
 <font BOLD="true"/>
@@ -784,7 +991,7 @@
 <font BOLD="true"/>
 </node>
 </node>
-<node TEXT="Expresiones Regulares" POSITION="bottom_or_right" ID="ID_1876962780" CREATED="1731918216860" MODIFIED="1731918222624">
+<node TEXT="Expresiones Regulares" POSITION="top_or_left" ID="ID_1876962780" CREATED="1731918216860" MODIFIED="1731918222624">
 <edge COLOR="#00007c"/>
 <node TEXT="Caracteres" ID="ID_641133200" CREATED="1731918285161" MODIFIED="1731918300893">
 <node TEXT="a" ID="ID_1163538247" CREATED="1731918306548" MODIFIED="1731918309095">
