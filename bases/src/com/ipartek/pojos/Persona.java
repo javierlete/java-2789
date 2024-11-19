@@ -15,10 +15,10 @@ public class Persona {
 	 */
 	public static final String NOMBRE_POR_DEFECTO = "Anónimo";
 	
-	// VARIABLES DE INSTANCIA (private)
-	private Long id;
-	private String nombre;
-	private LocalDate fechaNacimiento;
+	// VARIABLES DE INSTANCIA (para herencia cambiamos de private a protected)
+	protected Long id;
+	protected String nombre;
+	protected LocalDate fechaNacimiento;
 
 	// CONSTRUCTORES
 	/**
