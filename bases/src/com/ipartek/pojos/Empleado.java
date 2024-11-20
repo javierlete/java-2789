@@ -1,11 +1,12 @@
 package com.ipartek.pojos;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Empleado extends Persona {
-	private String dni;
-	private String nss;
+public abstract class Empleado extends Persona {
+	protected String dni;
+	protected String nss;
 
 	public Empleado(Long id, String nombre, LocalDate fechaNacimiento, String dni, String nss) {
 		super(id, nombre, fechaNacimiento);
@@ -34,6 +35,8 @@ public class Empleado extends Persona {
 		this.nss = nss;
 	}
 
+	public abstract BigDecimal getSueldoMensual();
+	
 	@Override
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		if (fechaNacimiento == null || getEdad(fechaNacimiento) < 18) {
