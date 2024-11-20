@@ -2,6 +2,7 @@ package com.ipartek.pojos;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 /**
  * La clase persona representa una persona con nombre y fecha de nacimiento
@@ -116,7 +117,25 @@ public class Persona {
 	public static int getEdad(LocalDate fechaNacimiento) {
 		return Period.between(fechaNacimiento, LocalDate.now()).getYears();
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(fechaNacimiento, id, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		return Objects.equals(fechaNacimiento, other.fechaNacimiento) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre, other.nombre);
+	}
+
 	// TOSTRING
 	@Override
 	public String toString() {

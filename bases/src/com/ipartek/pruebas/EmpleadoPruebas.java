@@ -37,10 +37,21 @@ public class EmpleadoPruebas {
 			System.out.println("No es un empleado");
 		}
 		
+		Empleado e1 = new Empleado("Clon", LocalDate.of(2000, 1, 1), "12345678A", "1234123412341234");
+		Empleado e2 = new Empleado("Clon", LocalDate.of(2000, 1, 1), "12345678A", "1234123412341234");
+		
 		Local local = new Local(1L, "Puzles", e);
 		
 		local.entrarPersona(e);
 		local.entrarPersona(new Persona("asdfasdf", LocalDate.now()));
+		local.entrarPersona(e1);
+		local.entrarPersona(e2);
+		
+		System.out.println(e1 == e2);
+		System.out.println(e1.equals(e2));
+		
+		System.out.println(e1.hashCode());
+		System.out.println(e2.hashCode());
 		
 		local.getPersonas().forEach(System.out::println);
 	}
