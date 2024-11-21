@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class EmpleadoPorHoras extends Empleado {
+
+	private static final long serialVersionUID = 8984314137957931514L;
+
 	private Integer horasMensuales;
 	private BigDecimal precioHora;
 

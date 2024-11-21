@@ -1,10 +1,14 @@
 package com.ipartek.pojos;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Local {
+public class Local implements Serializable {
+
+	private static final long serialVersionUID = -1096054584088868638L;
+
 	private Long id;
 	private String nombre;
 	private Persona responsable;

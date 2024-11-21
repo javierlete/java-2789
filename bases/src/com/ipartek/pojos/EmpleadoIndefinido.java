@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class EmpleadoIndefinido extends Empleado {
+
+	private static final long serialVersionUID = 9073448870331546167L;
+
 	private BigDecimal sueldoAnual;
 	private Integer numeroPagas;
 

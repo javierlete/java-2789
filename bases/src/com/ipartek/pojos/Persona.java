@@ -1,5 +1,6 @@
 package com.ipartek.pojos;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
@@ -9,7 +10,10 @@ import java.util.Objects;
  * 
  * @author Javier Lete
  */
-public class Persona {
+public class Persona implements Serializable {
+
+	private static final long serialVersionUID = 7605362091835974390L;
+
 	// CONSTANTES
 	/**
 	 * Valor por defecto para el nombre cuando no se proporciona

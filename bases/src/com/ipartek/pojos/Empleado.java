@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class Empleado extends Persona {
+
+	private static final long serialVersionUID = 4044422153861333324L;
+
 	protected String dni;
 	protected String nss;
 

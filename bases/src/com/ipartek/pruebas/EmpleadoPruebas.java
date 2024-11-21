@@ -1,5 +1,10 @@
 package com.ipartek.pruebas;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -10,6 +15,8 @@ import com.ipartek.pojos.Local;
 import com.ipartek.pojos.Persona;
 
 public class EmpleadoPruebas {
+	private static final String FICHERO_BINARIO = "fichero.dat";
+
 	public static void main(String[] args) {
 		var e = new EmpleadoIndefinido(1L, "Pepe", LocalDate.of(2000, 1, 2), "12345678A", "1234-1234-1234-1234", new BigDecimal("12345.67"), 14);
 
@@ -67,5 +74,24 @@ public class EmpleadoPruebas {
 		}
 		
 		System.out.println(total);
+		
+		try (var fos = new FileOutputStream(FICHERO_BINARIO);
+				var oos = new ObjectOutputStream(fos)) {
+			oos.writeObject(local);
+		} catch (IOException e3) {
+			e3.printStackTrace();
+		}
+		
+		Local local2;
+		try (var fis = new FileInputStream(FICHERO_BINARIO);
+				var ois = new ObjectInputStream(fis)) {
+			local2 = (Local)ois.readObject();
+			
+			System.out.println(local2);
+			
+			local2.getPersonas().forEach(System.out::println);
+		} catch (ClassNotFoundException | IOException e3) {
+			e3.printStackTrace();
+		}
 	}
 }

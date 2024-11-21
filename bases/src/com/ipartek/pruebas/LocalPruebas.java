@@ -24,5 +24,6 @@ public class LocalPruebas {
 		
 		l.getPersonas().forEach(System.out::println);
 		
+		
 	}
 }
