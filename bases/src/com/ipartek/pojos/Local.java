@@ -9,6 +9,8 @@ public class Local {
 	private String nombre;
 	private Persona responsable;
 
+	private TipoLocal tipo = TipoLocal.TRABAJO;
+	
 	private HashSet<Persona> personas = new HashSet<>();
 
 	public Local(Long id, String nombre, Persona responsable) {
@@ -46,6 +48,14 @@ public class Local {
 		return Collections.unmodifiableSet(personas);
 	}
 	
+	public TipoLocal getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoLocal tipo) {
+		this.tipo = tipo;
+	}
+
 	public void entrarPersona(Persona persona) {
 		if(persona == null) {
 			throw new RuntimeException("No se admiten personas inexistentes");
@@ -59,4 +69,5 @@ public class Local {
 		return "Local [id=" + id + ", nombre=" + nombre + ", responsable=" + responsable + "]";
 	}
 
+	public enum TipoLocal { PRIVADO, PUBLICO, FIESTA, TRABAJO }
 }
