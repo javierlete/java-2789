@@ -1,11 +1,14 @@
 package com.ipartek.bibliotecas;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.function.Function;
 
 public class Consola {
-	private static final boolean NO_REQUERIDO = false;
+	public static final boolean NO_REQUERIDO = false;
+	public static final boolean REQUERIDO = true;
+	
 	private static final Scanner SC = new Scanner(System.in);
 
 	private Consola() {
@@ -21,6 +24,10 @@ public class Consola {
 
 	public static void pl(String mensaje) {
 		System.out.println(mensaje);
+	}
+	
+	public static void pl(Object objeto) {
+		System.out.println(objeto);
 	}
 
 	public static String leerString(String mensaje, boolean requerido) {
@@ -52,6 +59,10 @@ public class Consola {
 
 	public static Long leerLong(String mensaje) {
 		return leerAlgo(mensaje, Long::parseLong);
+	}
+	
+	public static BigDecimal leerBigDecimal(String mensaje) {
+		return leerAlgo(mensaje, texto -> new BigDecimal(texto));
 	}
 
 	private static <T> T leerAlgo(String mensaje, Function<String, T> cachoCodigo) {
