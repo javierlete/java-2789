@@ -3,13 +3,13 @@ package com.ipartek.almacen.presentacion;
 import static com.ipartek.bibliotecas.Consola.*;
 
 import com.ipartek.almacen.accesodatos.DaoProducto;
-import com.ipartek.almacen.accesodatos.DaoProductoTreeMap;
+import com.ipartek.almacen.fabrica.Fabrica;
 import com.ipartek.almacen.pojos.Producto;
 
 public class AlmacenConsola {
 	private static final int SALIR = 0;
 
-	private static final DaoProducto DAO = DaoProductoTreeMap.getInstancia();
+	private static final DaoProducto DAO = Fabrica.getDaoProducto();
 
 	private static final boolean SIN_ID = false;
 
