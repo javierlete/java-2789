@@ -9,7 +9,7 @@ import com.ipartek.almacen.pojos.Producto;
 public class AlmacenConsola {
 	private static final int SALIR = 0;
 
-	private static final DaoProducto DAO = new DaoProductoTreeMap();
+	private static final DaoProducto DAO = DaoProductoTreeMap.getInstancia();
 
 	private static final boolean SIN_ID = false;
 
