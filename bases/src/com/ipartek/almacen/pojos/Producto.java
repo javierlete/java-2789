@@ -1,10 +1,14 @@
 package com.ipartek.almacen.pojos;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Producto {
+public class Producto implements Serializable {
+	
+	private static final long serialVersionUID = -1343735207294068533L;
+
 	private Long id;
 	private String nombre;
 	private BigDecimal precio;
