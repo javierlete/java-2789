@@ -9,20 +9,16 @@ import com.ipartek.almacen.pojos.Producto;
 public class DaoProductoTreeMap implements DaoProducto {
 	protected TreeMap<Long, Producto> productos = new TreeMap<>();
 
-	// SINGLETON
-	public static DaoProductoTreeMap getInstancia() {
-		return INSTANCIA;
-	}
-
-	private static final DaoProductoTreeMap INSTANCIA = new DaoProductoTreeMap();
-
-	protected DaoProductoTreeMap() {
+	public DaoProductoTreeMap() {
 		for (long i = 1; i <= 10; i++) {
 			productos.put(i,
 					new Producto(i, "Producto " + i, new BigDecimal(i * 10), LocalDate.of(2024, (int) i, (int) i * 2)));
 		}
 	}
-	// FIN SINGLETON
+	
+	public DaoProductoTreeMap(String url, String user, String pass) {
+		this();
+	}
 
 	@Override
 	public Iterable<Producto> obtenerTodos() {

@@ -26,6 +26,10 @@ public class DaoProductoFicheroObjetos extends DaoProductoTreeMap implements Dao
 			}
 		}
 	}
+	
+	public DaoProductoFicheroObjetos(String url, String user, String pass) {
+		this(url);
+	}
 
 	@Override
 	public Iterable<Producto> obtenerTodos() {
