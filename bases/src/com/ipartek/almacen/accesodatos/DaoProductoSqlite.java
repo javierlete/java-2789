@@ -9,6 +9,8 @@ public class DaoProductoSqlite extends DaoProductoJdbc implements DaoProducto {
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id=?";
 	private static final String SQL_SELECT_NOMBRE = SQL_SELECT + " WHERE nombre LIKE ?";
 	private static final String SQL_SELECT_PRECIO = SQL_SELECT + " WHERE precio BETWEEN ? AND ?";
+	private static final String SQL_SELECT_CATEGORIA = SQL_SELECT + " WHERE id_categoria=?";
+	
 	private static final String SQL_INSERT = "INSERT INTO productos (nombre, precio, fecha_caducidad) VALUES (?,?,?)";
 	private static final String SQL_UPDATE = "UPDATE productos SET nombre=?, precio=?, fecha_caducidad=? WHERE id=?";
 	private static final String SQL_DELETE = "DELETE FROM productos WHERE id=?";
@@ -36,6 +38,11 @@ public class DaoProductoSqlite extends DaoProductoJdbc implements DaoProducto {
 	@Override
 	public Iterable<Producto> obtenerPorPrecio(BigDecimal minimo, BigDecimal maximo) {
 		return ejecutarConsulta(SQL_SELECT_PRECIO, pst -> datosSentencia(pst, minimo, maximo));
+	}
+
+	@Override
+	public Iterable<Producto> obtenerPorIdCategoria(Long id) {
+		return ejecutarConsulta(SQL_SELECT_CATEGORIA, pst -> datosSentencia(pst, id));
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashSet;
 
 import com.ipartek.almacen.pojos.Categoria;
 import com.ipartek.almacen.pojos.Producto;
@@ -41,6 +42,8 @@ public class DaoCategoriaSqlite extends DaoCategoriaJdbc implements DaoCategoria
 
 			pst.setLong(1, id);
 
+			var productos = new LinkedHashSet<Producto>();
+			
 			try (ResultSet rs = pst.executeQuery()) {
 				Categoria categoria = null;
 
@@ -60,9 +63,11 @@ public class DaoCategoriaSqlite extends DaoCategoriaJdbc implements DaoCategoria
 					
 					var producto = new Producto(idProducto, nombre, precio, fechaCaducidad, categoria);
 					
-					categoria.getProductos().add(producto);
+					productos.add(producto);
 				}
 
+				categoria.setProductos(productos);
+				
 				return categoria;
 			}
 		} catch (SQLException e) {

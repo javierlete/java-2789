@@ -4,13 +4,19 @@ import com.ipartek.almacen.fabrica.Fabrica;
 
 public class DaoCategoriaSqlitePrueba {
 	public static void main(String[] args) {
-		var dao = Fabrica.getDaoCategoria();
+		var daoProducto = Fabrica.getDaoProducto();
+		var daoCategoria = Fabrica.getDaoCategoria();
 		
-		dao.obtenerTodos().forEach(System.out::println);
+		daoCategoria.obtenerTodos().forEach(System.out::println);
 		
-		System.out.println(dao.obtenerPorId(1L));
+		var categoria = daoCategoria.obtenerPorIdConProductos(1L);
 		
-		var categoria = dao.obtenerPorIdConProductos(1L);
+		System.out.println(categoria);
+		
+		categoria.getProductos().forEach(System.out::println);
+
+		categoria = daoCategoria.obtenerPorId(1L);
+		categoria.setProductos(daoProducto.obtenerPorIdCategoria(categoria.getId()));
 		
 		System.out.println(categoria);
 		

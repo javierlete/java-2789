@@ -2,14 +2,13 @@ package com.ipartek.almacen.pojos;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public class Categoria {
 	private Long id;
 	private String nombre;
 	private String descripcion;
 
-	private final Set<Producto> productos = new LinkedHashSet<>();
+	private Iterable<Producto> productos = new LinkedHashSet<>();
 
 	public Categoria(Long id, String nombre, String descripcion) {
 		super();
@@ -42,8 +41,12 @@ public class Categoria {
 		this.descripcion = descripcion;
 	}
 
-	public Set<Producto> getProductos() {
+	public Iterable<Producto> getProductos() {
 		return productos;
+	}
+
+	public void setProductos(Iterable<Producto> productos) {
+		this.productos = productos;
 	}
 
 	@Override
