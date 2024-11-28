@@ -1,6 +1,6 @@
 package com.ipartek.almacen.pojos;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,7 +9,7 @@ public class Categoria {
 	private String nombre;
 	private String descripcion;
 
-	private final Set<Producto> productos = new HashSet<>();
+	private final Set<Producto> productos = new LinkedHashSet<>();
 
 	public Categoria(Long id, String nombre, String descripcion) {
 		super();
