@@ -9,5 +9,11 @@ public class DaoCategoriaSqlitePrueba {
 		dao.obtenerTodos().forEach(System.out::println);
 		
 		System.out.println(dao.obtenerPorId(1L));
+		
+		var categoria = dao.obtenerPorIdConProductos(1L);
+		
+		System.out.println(categoria);
+		
+		categoria.getProductos().forEach(System.out::println);
 	}
 }
