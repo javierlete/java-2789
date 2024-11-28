@@ -13,13 +13,20 @@ public class Producto implements Serializable {
 	private String nombre;
 	private BigDecimal precio;
 	private LocalDate fechaCaducidad;
+	
+	private Categoria categoria;
 
-	public Producto(Long id, String nombre, BigDecimal precio, LocalDate fechaCaducidad) {
+	public Producto(Long id, String nombre, BigDecimal precio, LocalDate fechaCaducidad, Categoria categoria) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.fechaCaducidad = fechaCaducidad;
+		this.categoria = categoria;
+	}
+	
+	public Producto(Long id, String nombre, BigDecimal precio, LocalDate fechaCaducidad) {
+		this(id, nombre, precio, fechaCaducidad, null);
 	}
 
 	public Long getId() {
@@ -54,9 +61,17 @@ public class Producto implements Serializable {
 		this.fechaCaducidad = fechaCaducidad;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(fechaCaducidad, id, nombre, precio);
+		return Objects.hash(categoria, fechaCaducidad, id, nombre, precio);
 	}
 
 	@Override
@@ -68,14 +83,15 @@ public class Producto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		return Objects.equals(fechaCaducidad, other.fechaCaducidad) && Objects.equals(id, other.id)
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(precio, other.precio);
+		return Objects.equals(categoria, other.categoria) && Objects.equals(fechaCaducidad, other.fechaCaducidad)
+				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(precio, other.precio);
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Producto [id=%s, nombre=%s, precio=%s, fechaCaducidad=%s]", id, nombre, precio,
-				fechaCaducidad);
+		return String.format("Producto [id=%s, nombre=%s, precio=%s, fechaCaducidad=%s, categoria=%s]", id, nombre,
+				precio, fechaCaducidad, categoria);
 	}
 
 }
