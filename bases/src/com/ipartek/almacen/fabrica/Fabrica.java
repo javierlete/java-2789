@@ -6,10 +6,13 @@ import java.util.Properties;
 
 import com.ipartek.almacen.accesodatos.DaoCategoria;
 import com.ipartek.almacen.accesodatos.DaoProducto;
+import com.ipartek.almacen.negocio.UsuarioNegocio;
+import com.ipartek.almacen.negocio.UsuarioNegocioImpl;
 
 public class Fabrica {
 	private static DaoProducto daoProducto = null;
 	private static DaoCategoria daoCategoria = null;
+	private static UsuarioNegocio usuarioNegocio = null;
 	
 	static {
 		try {
@@ -25,6 +28,8 @@ public class Fabrica {
 			
 			daoProducto = (DaoProducto) Class.forName(daoProductoClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 			daoCategoria = (DaoCategoria) Class.forName(daoCategoriaClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
+			
+			usuarioNegocio = new UsuarioNegocioImpl();
 		} catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | ClassNotFoundException e) {
 			throw new FabricaException("No se ha podido inicializar la fábrica", e);
 		}
@@ -37,5 +42,8 @@ public class Fabrica {
 	public static DaoCategoria getDaoCategoria() {
 		return daoCategoria;
 	}
-	
+
+	public static UsuarioNegocio getUsuarioNegocio() {
+		return usuarioNegocio;
+	}
 }
