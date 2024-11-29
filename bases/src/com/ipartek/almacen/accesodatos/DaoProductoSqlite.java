@@ -27,6 +27,10 @@ public class DaoProductoSqlite extends DaoProductoJdbc implements DaoProducto {
 
 	@Override
 	public Producto obtenerPorId(Long id) {
+		if(id == null) {
+			throw new AccesoDatosException("No se admiten ids a null");
+		}
+		
 		return ejecutarConsultaUno(SQL_SELECT_ID, pst -> datosSentencia(pst, id));
 	}
 
