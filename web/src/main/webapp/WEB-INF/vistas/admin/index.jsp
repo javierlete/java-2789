@@ -24,7 +24,7 @@
 			<td>${p.fechaCaducidad}</td>
 			<td>
 				<a href="producto?id=${p.id}" class="btn btn-primary btn-sm">Editar</a>
-				<a href="#" class="btn btn-danger btn-sm">Borrar</a>
+				<a onclick="javascript:return confirm('¿Estás seguro de que quieres borrar ${p.nombre}?')" href="producto/borrar?id=${p.id}" class="btn btn-danger btn-sm">Borrar</a>
 			</td>
 		</tr>
 		</c:forEach>
