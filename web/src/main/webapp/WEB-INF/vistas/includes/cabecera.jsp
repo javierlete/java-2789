@@ -4,6 +4,9 @@
 <!doctype html>
 <html lang="es">
 <head>
+
+<base href="${pageContext.request.contextPath}/">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Almacén</title>
@@ -27,6 +30,9 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" href="index">Principal</a></li>
+				</ul>
+				<ul class="navbar-nav mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="admin/">Administración</a></li>
 				</ul>
 			</div>
 		</div>

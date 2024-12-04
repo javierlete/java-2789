@@ -23,8 +23,8 @@
 			<td>${p.precio}</td>
 			<td>${p.fechaCaducidad}</td>
 			<td>
-				<a href="producto?id=${p.id}" class="btn btn-primary btn-sm">Editar</a>
-				<a onclick="javascript:return confirm('¿Estás seguro de que quieres borrar ${p.nombre}?')" href="producto/borrar?id=${p.id}" class="btn btn-danger btn-sm">Borrar</a>
+				<a href="admin/producto?id=${p.id}" class="btn btn-primary btn-sm">Editar</a>
+				<a onclick="javascript:return confirm('¿Estás seguro de que quieres borrar ${p.nombre}?')" href="admin/producto/borrar?id=${p.id}" class="btn btn-danger btn-sm">Borrar</a>
 			</td>
 		</tr>
 		</c:forEach>
@@ -37,7 +37,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<a href="producto" class="btn btn-primary btn-sm">Añadir</a>
+				<a href="admin/producto" class="btn btn-primary btn-sm">Añadir</a>
 			</td>
 		</tr>
 	</tfoot>
