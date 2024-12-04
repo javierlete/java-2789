@@ -23,7 +23,7 @@
 			<td>${p.precio}</td>
 			<td>${p.fechaCaducidad}</td>
 			<td>
-				<a href="#" class="btn btn-primary btn-sm">Editar</a>
+				<a href="producto" class="btn btn-primary btn-sm">Editar</a>
 				<a href="#" class="btn btn-danger btn-sm">Borrar</a>
 			</td>
 		</tr>
@@ -37,7 +37,7 @@
 			<td></td>
 			<td></td>
 			<td>
-				<a href="#" class="btn btn-primary btn-sm">Añadir</a>
+				<a href="producto" class="btn btn-primary btn-sm">Añadir</a>
 			</td>
 		</tr>
 	</tfoot>
