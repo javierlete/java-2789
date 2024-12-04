@@ -21,7 +21,7 @@ public class IndexAdminServlet extends HttpServlet {
 		// Empaquetarlos en objetos
 		// Ejecutar la lógica de negocio
 		
-		var productos = Fabrica.getUsuarioNegocio().verProductos();
+		var productos = Fabrica.getAdminNegocio().verProductos();
 
 		// Empaquetar datos para la pantalla
 		

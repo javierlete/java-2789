@@ -29,7 +29,7 @@ public class ProductoAdminServlet extends HttpServlet {
 			// Empaquetarlos en objetos
 			// Ejecutar la lógica de negocio
 
-			var producto = Fabrica.getUsuarioNegocio().buscarProductoPorId(id); 
+			var producto = Fabrica.getAdminNegocio().buscarProductoPorId(id); 
 
 			// Empaquetar datos para la pantalla
 
