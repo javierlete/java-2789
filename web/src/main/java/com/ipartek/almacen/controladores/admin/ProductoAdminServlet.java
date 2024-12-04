@@ -1,10 +1,8 @@
 package com.ipartek.almacen.controladores.admin;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
-import com.ipartek.almacen.pojos.Producto;
+import com.ipartek.almacen.fabrica.Fabrica;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,7 +29,7 @@ public class ProductoAdminServlet extends HttpServlet {
 			// Empaquetarlos en objetos
 			// Ejecutar la lógica de negocio
 
-			var producto = new Producto(id, "Producto " + id, new BigDecimal(1234), LocalDate.now());
+			var producto = Fabrica.getUsuarioNegocio().buscarProductoPorId(id); 
 
 			// Empaquetar datos para la pantalla
 
