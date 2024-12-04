@@ -16,26 +16,18 @@
 	</thead>
 	
 	<tbody>
+		<c:forEach items="${productos}" var="p">
 		<tr>
-			<th>1</th>
-			<td>Un producto</td>
-			<td>1234,56€</td>
-			<td>2000-01-02</td>
+			<th>${p.id}</th>
+			<td>${p.nombre}</td>
+			<td>${p.precio}</td>
+			<td>${p.fechaCaducidad}</td>
 			<td>
 				<a href="#" class="btn btn-primary btn-sm">Editar</a>
 				<a href="#" class="btn btn-danger btn-sm">Borrar</a>
 			</td>
 		</tr>
-		<tr>
-			<th>1</th>
-			<td>Un producto</td>
-			<td>1234,56€</td>
-			<td>2000-01-02</td>
-			<td>
-				<a href="#" class="btn btn-primary btn-sm">Editar</a>
-				<a href="#" class="btn btn-danger btn-sm">Borrar</a>
-			</td>
-		</tr>
+		</c:forEach>
 	</tbody>
 	
 	<tfoot class="table-dark">
