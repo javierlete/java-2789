@@ -33,7 +33,9 @@ public abstract class DaoProductoJdbc extends DaoJdbc implements DaoProducto {
 			if (producto.getNombre() != null) {
 				pst.setString(1, producto.getNombre());
 				pst.setBigDecimal(2, producto.getPrecio());
-				pst.setDate(3, java.sql.Date.valueOf(producto.getFechaCaducidad()));
+				
+				var fecha = producto.getFechaCaducidad() == null ? null : java.sql.Date.valueOf(producto.getFechaCaducidad());
+				pst.setDate(3, fecha);
 			}
 	
 			if (producto.getNombre() != null && producto.getId() != null) {
