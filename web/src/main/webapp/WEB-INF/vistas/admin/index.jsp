@@ -23,7 +23,7 @@
 			<td>${p.precio}</td>
 			<td>${p.fechaCaducidad}</td>
 			<td>
-				<a href="producto" class="btn btn-primary btn-sm">Editar</a>
+				<a href="producto?id=${p.id}" class="btn btn-primary btn-sm">Editar</a>
 				<a href="#" class="btn btn-danger btn-sm">Borrar</a>
 			</td>
 		</tr>

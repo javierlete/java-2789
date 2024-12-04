@@ -1,6 +1,10 @@
 package com.ipartek.almacen.controladores.admin;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import com.ipartek.almacen.pojos.Producto;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,10 +19,25 @@ public class ProductoAdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Recibir datos de petición
+
+		String sId = request.getParameter("id");
+
 		// Convertir los datos
-		// Empaquetarlos en objetos
-		// Ejecutar la lógica de negocio
-		// Empaquetar datos para la pantalla
+
+		if (sId != null) {
+
+			Long id = Long.parseLong(sId);
+
+			// Empaquetarlos en objetos
+			// Ejecutar la lógica de negocio
+
+			var producto = new Producto(id, "Producto " + id, new BigDecimal(1234), LocalDate.now());
+
+			// Empaquetar datos para la pantalla
+
+			request.setAttribute("producto", producto);
+		}
+		
 		// Mostrar la siguiente pantalla
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 	}
