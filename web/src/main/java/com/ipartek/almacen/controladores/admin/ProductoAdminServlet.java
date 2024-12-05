@@ -1,8 +1,8 @@
 package com.ipartek.almacen.controladores.admin;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 import com.ipartek.almacen.fabrica.Fabrica;
 import com.ipartek.almacen.pojos.Producto;
@@ -16,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/admin/producto")
 public class ProductoAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger LOG = Logger.getLogger(ProductoAdminServlet.class.getName());
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,6 +41,8 @@ public class ProductoAdminServlet extends HttpServlet {
 			request.setAttribute("producto", producto);
 		}
 
+		request.setAttribute("hoy", LocalDate.now());
+		
 		// Mostrar la siguiente pantalla
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 	}
@@ -48,26 +52,31 @@ public class ProductoAdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// Recibir datos de petición
 		
-		String sId = request.getParameter("id");
+		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
-		String sPrecio = request.getParameter("precio");
-		String sFecha = request.getParameter("fecha");
+		String precio = request.getParameter("precio");
+		String fechaCaducidad = request.getParameter("fecha");
 		
 		// Convertir los datos
-		
-		Long id = sId.isBlank() ? null: Long.parseLong(sId);
-		BigDecimal precio = new BigDecimal(sPrecio);
-		LocalDate fechaCaducidad = sFecha.isBlank() ? null : LocalDate.parse(sFecha);
-		
 		// Empaquetarlos en objetos
 		
 		var producto = new Producto(id, nombre, precio, fechaCaducidad);
 		
 		// Ejecutar la lógica de negocio
 		
+		if(!producto.isCorrecto()) {
+			LOG.info(producto.toString());
+			
+			request.setAttribute("producto", producto);
+			
+			request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
+			
+			return;
+		}
+		
 		var negocio = Fabrica.getAdminNegocio();
 		
-		if(id == null) {
+		if(producto.getId() == null) {
 			negocio.altaProducto(producto);
 		} else {
 			negocio.modificarProducto(producto);
