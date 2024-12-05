@@ -18,7 +18,8 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
+	<nav class="navbar navbar-expand-lg bg-dark sticky-top"
+		data-bs-theme="dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index">Almacén</a>
 			<button class="navbar-toggler" type="button"
@@ -32,10 +33,24 @@
 					<li class="nav-item"><a class="nav-link" href="index">Principal</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="admin/">Administración</a></li>
+					<c:if test="${sessionScope.email != null}">
+						<li class="nav-item"><a class="nav-link" href="admin/">Administración</a></li>
+						<li class="navbar-text">${sessionScope.email}</li>
+					</c:if>
+
+					<c:choose>
+						<c:when test="${sessionScope.email != null}">
+							<li class="nav-item"><a class="nav-link" href="logout">Cerrar
+									sesión</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="login">Iniciar
+									sesión</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
-	<%="<main class='container mt-3 mb-5 pb-5'>" %>
+
+	<%="<main class='container mt-3 mb-5 pb-5'>"%>
