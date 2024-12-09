@@ -8,7 +8,10 @@
 - Expresiones Regulares: https://www.regular-expressions.info
   - Expresiones Regulares con Unicode: https://www.regular-expressions.info/unicode.html
   - Probador de Expresiones Regulares: https://regex101.com/
- 
+- Maven
+  - Maven By Example: https://books.sonatype.com/mvnex-book/reference/index.html
+  - Maven the Complete Reference: https://books.sonatype.com/mvnref-book/reference/index.html
+
 # Ejercicios
 
 - Programación Orientada a Objetos
