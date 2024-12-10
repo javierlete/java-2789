@@ -6,8 +6,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Producto implements Serializable {
 	
 	private static final long serialVersionUID = -1343735207294068533L;
@@ -17,6 +26,8 @@ public class Producto implements Serializable {
 	private BigDecimal precio;
 	private LocalDate fechaCaducidad;
 
+	@EqualsAndHashCode.Exclude
+	@Builder.Default
 	private Map<String, String> errores = new HashMap<>();
 	
 	private Categoria categoria;
@@ -40,14 +51,10 @@ public class Producto implements Serializable {
 		this(id, nombre, precio, fechaCaducidad, null);
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public void setId(String sId) {
 		try {
 			setId(sId.isBlank() ? null: Long.parseLong(sId));
@@ -56,20 +63,12 @@ public class Producto implements Serializable {
 		}
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
 	public void setNombre(String nombre) {
 		if(nombre == null || nombre.isBlank()) {
 			errores.put("nombre", "El nombre no puede estar en blanco y es obligatorio");
 		}
 		
 		this.nombre = nombre;
-	}
-
-	public BigDecimal getPrecio() {
-		return precio;
 	}
 
 	public void setPrecio(BigDecimal precio) {
@@ -86,10 +85,6 @@ public class Producto implements Serializable {
 		} catch (NumberFormatException e) {
 			errores.put("precio", "El precio es obligatorio");
 		}
-	}
-
-	public LocalDate getFechaCaducidad() {
-		return fechaCaducidad;
 	}
 
 	public void setFechaCaducidad(LocalDate fechaCaducidad) {
@@ -109,45 +104,7 @@ public class Producto implements Serializable {
 		
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public Map<String, String> getErrores() {
-		return errores;
-	}
-	
 	public boolean isCorrecto() {
 		return errores.size() == 0;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(categoria, fechaCaducidad, id, nombre, precio);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Producto other = (Producto) obj;
-		return Objects.equals(categoria, other.categoria) && Objects.equals(fechaCaducidad, other.fechaCaducidad)
-				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(precio, other.precio);
-	}
-
-	@Override
-	public String toString() {
-		return String.format("Producto [id=%s, nombre=%s, precio=%s, fechaCaducidad=%s, errores=%s, categoria=%s]", id,
-				nombre, precio, fechaCaducidad, errores, categoria);
-	}
-
 }
