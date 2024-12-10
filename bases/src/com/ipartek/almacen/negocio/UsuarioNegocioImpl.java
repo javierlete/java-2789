@@ -1,15 +1,14 @@
 package com.ipartek.almacen.negocio;
 
-import java.util.logging.Logger;
-
 import com.ipartek.almacen.accesodatos.AccesoDatosException;
 import com.ipartek.almacen.accesodatos.DaoProducto;
 import com.ipartek.almacen.fabrica.Fabrica;
 import com.ipartek.almacen.pojos.Producto;
 
-public class UsuarioNegocioImpl implements UsuarioNegocio {
+import lombok.extern.java.Log;
 
-	private static final Logger LOG = Logger.getLogger(UsuarioNegocioImpl.class.getName());
+@Log
+public class UsuarioNegocioImpl implements UsuarioNegocio {
 	
 	private final DaoProducto daoProductos = Fabrica.getDaoProducto();
 	
@@ -21,7 +20,7 @@ public class UsuarioNegocioImpl implements UsuarioNegocio {
 	@Override
 	public Producto buscarProductoPorId(Long id) {
 		try {
-			LOG.info("Se ha pedido un producto por el id: " + id);
+			log.info("Se ha pedido un producto por el id: " + id);
 			return daoProductos.obtenerPorId(id);
 		} catch (AccesoDatosException e) {
 			throw new NegocioException("Error al buscar el producto por id " + id, e);
@@ -31,7 +30,7 @@ public class UsuarioNegocioImpl implements UsuarioNegocio {
 	@Override
 	public Iterable<Producto> buscarProductosPorNombre(String nombre) {
 		// daoBusquedas.insertar(new Busqueda(LocalDateTime.now(), nombre));
-		LOG.info("BUSQUEDA: " + nombre);
+		log.info("BUSQUEDA: " + nombre);
 		return daoProductos.obtenerPorNombreParcial(nombre);
 	}
 }
