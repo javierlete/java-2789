@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<%-- ${producto} --%>
+<p>${producto}</p>
+<p>${errores}</p>
 
 <form action="admin/producto" method="post" class="needs-validation"
 	novalidate>
@@ -16,7 +17,7 @@
 	<div class="row mb-3">
 		<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 		<div class="col-sm-10">
-			<input type="text" required class="form-control ${producto.errores.nombre != null ? 'is-invalid': '' }" id="nombre"
+			<input type="text" required class="form-control ${errores.nombre != null ? 'is-invalid' : '' }" id="nombre"
 				name="nombre" value="${producto.nombre}">
 			<div class="invalid-feedback">El nombre no se puede dejar vacío</div>
 		</div>
@@ -24,7 +25,7 @@
 	<div class="row mb-3">
 		<label for="precio" class="col-sm-2 col-form-label">Precio</label>
 		<div class="col-sm-10">
-			<input type="number" required min="0" step=".01" class="form-control ${producto.errores.precio != null ? 'is-invalid': '' }"
+			<input type="number" required min="0" step=".01" class="form-control ${errores.precio != null ? 'is-invalid' : '' }"
 				id="precio" name="precio" value="${producto.precio}">
 			<div class="invalid-feedback">El precio es obligatorio y no puede ser negativo</div>
 		</div>
@@ -33,7 +34,7 @@
 		<label for="fecha" class="col-sm-2 col-form-label">Fecha de
 			caducidad</label>
 		<div class="col-sm-10">
-			<input type="date" min="${hoy}" class="form-control ${producto.errores.fechaCaducidad != null ? 'is-invalid': '' }" id="fecha"
+			<input type="date" min="${hoy}" class="form-control ${errores.fecha != null ? 'is-invalid' : '' }" id="fecha"
 				name="fecha" value="${producto.fechaCaducidad}">
 			<div class="invalid-feedback">La fecha debe ser posterior o igual a la actual</div>
 		</div>

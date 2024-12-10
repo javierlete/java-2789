@@ -22,11 +22,4 @@ public class Categoria {
 	@EqualsAndHashCode.Exclude
 	@Builder.Default
 	private Iterable<Producto> productos = new LinkedHashSet<>();
-
-	public Categoria(Long id, String nombre, String descripcion) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-	}
 }

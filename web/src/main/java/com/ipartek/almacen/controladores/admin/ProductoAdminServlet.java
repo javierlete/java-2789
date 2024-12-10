@@ -1,6 +1,7 @@
 package com.ipartek.almacen.controladores.admin;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -52,29 +53,34 @@ public class ProductoAdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// Recibir datos de petición
 		
-		String id = request.getParameter("id");
+		String sId = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
-		String precio = request.getParameter("precio");
-		String fechaCaducidad = request.getParameter("fecha");
+		String sPrecio = request.getParameter("precio");
+		String sFechaCaducidad = request.getParameter("fecha");
 		
 		// Convertir los datos
+		var id = sId.isBlank() ? null : Long.parseLong(sId);
+		var precio = sPrecio.isBlank() ? null : new BigDecimal(sPrecio);
+		var fechaCaducidad = sFechaCaducidad.isBlank() ? null: LocalDate.parse(sFechaCaducidad);
+		
 		// Empaquetarlos en objetos
 		
-		var producto = new Producto(id, nombre, precio, fechaCaducidad);
+		var producto = Producto.builder().id(id).nombre(nombre).precio(precio).fechaCaducidad(fechaCaducidad).build();
 		
 		// Ejecutar la lógica de negocio
 		
-		if(!producto.isCorrecto()) {
+		var negocio = Fabrica.getAdminNegocio();
+
+		if(!negocio.validar(producto)) {
 			LOG.info(producto.toString());
 			
 			request.setAttribute("producto", producto);
+			request.setAttribute("errores", negocio.errores(producto));
 			
 			request.getRequestDispatcher("/WEB-INF/vistas/admin/producto.jsp").forward(request, response);
 			
 			return;
 		}
-		
-		var negocio = Fabrica.getAdminNegocio();
 		
 		if(producto.getId() == null) {
 			negocio.altaProducto(producto);
