@@ -64,6 +64,21 @@
 			<version>8.0.1.Final</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.6.3.Final</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-community-dialects -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-community-dialects</artifactId>
+			<version>6.6.3.Final</version>
+		</dependency>
+
 	</dependencies>
 
 
