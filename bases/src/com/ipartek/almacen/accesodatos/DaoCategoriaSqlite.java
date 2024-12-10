@@ -52,7 +52,7 @@ public class DaoCategoriaSqlite extends DaoCategoriaJdbc implements DaoCategoria
 						var nombre = rs.getString("c_nombre");
 						var descripcion = rs.getString("c_descripcion");
 
-						categoria = new Categoria(id, nombre, descripcion);
+						categoria = Categoria.builder().id(id).nombre(nombre).descripcion(descripcion).build();;
 					}
 					
 					var idProducto = rs.getLong("p_id");

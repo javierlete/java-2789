@@ -127,7 +127,7 @@ public class AlmacenConsola {
 		var precio = leerBigDecimal("Precio");
 		var fecha = leerFecha("Fecha de caducidad");
 		
-		var producto = new Producto(id, nombre, precio, fecha);
+		var producto = Producto.builder().id(id).nombre(nombre).precio(precio).fechaCaducidad(fecha).build();
 		
 		return producto;
 	}

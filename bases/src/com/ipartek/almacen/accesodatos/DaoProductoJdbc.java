@@ -24,7 +24,7 @@ public abstract class DaoProductoJdbc extends DaoJdbc implements DaoProducto {
 		var fecha = rs.getDate("fecha_caducidad");
 		var fechaCaducidad = fecha != null ? fecha.toLocalDate() : null;
 	
-		producto = new Producto(id, nombre, precio, fechaCaducidad);
+		producto = Producto.builder().id(id).nombre(nombre).precio(precio).fechaCaducidad(fechaCaducidad).build();
 		return producto;
 	}
 

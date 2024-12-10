@@ -17,7 +17,7 @@ import com.ipartek.almacen.pojos.Producto;
 
 class UsuarioNegocioImplTest {
 
-	private static final Producto PRODUCTO1 = new Producto(1L, "Portátil", new BigDecimal("1234.12"), null);
+	private static final Producto PRODUCTO1 = Producto.builder().id(1L).nombre("Portátil").precio(new BigDecimal("1234.12")).build();
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

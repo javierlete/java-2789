@@ -11,11 +11,11 @@ public class DaoProductoTreeMap implements DaoProducto {
 
 	public DaoProductoTreeMap() {
 		for (long i = 1; i <= 10; i++) {
-			productos.put(i,
-					new Producto(i, "Producto " + i, new BigDecimal(i * 10), LocalDate.of(2024, (int) i, (int) i * 2)));
+			productos.put(i, Producto.builder().id(i).nombre("Producto " + i).precio(new BigDecimal(i * 10))
+					.fechaCaducidad(LocalDate.of(2024, (int) i, (int) i * 2)).build());
 		}
 	}
-	
+
 	public DaoProductoTreeMap(String url, String user, String pass) {
 		this();
 	}

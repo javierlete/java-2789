@@ -19,30 +19,30 @@ public abstract class DaoCategoriaJdbc extends DaoJdbc implements DaoCategoria {
 		var id = rs.getLong("id");
 		var nombre = rs.getString("nombre");
 		var descripcion = rs.getString("descripcion");
-	
-		return new Categoria(id, nombre, descripcion);
+
+		return Categoria.builder().id(id).nombre(nombre).descripcion(descripcion).build();
 	}
 
 	protected Categoria ejecutarConsultaUno(String sql, Consumer<PreparedStatement> codigo) {
 		var i = ejecutarConsulta(sql, codigo).iterator();
 		return i.hasNext() ? i.next() : null;
 	}
-	
+
 	protected Iterable<Categoria> ejecutarConsulta(String sql, Consumer<PreparedStatement> codigo) {
 		try (Connection con = getConexion(); PreparedStatement pst = con.prepareStatement(sql);) {
-	
+
 			codigo.accept(pst);
-	
+
 			try (ResultSet rs = pst.executeQuery()) {
 				Categoria categoria = null;
-	
+
 				var categorias = new ArrayList<Categoria>();
-	
+
 				while (rs.next()) {
 					categoria = filaACategoria(rs);
 					categorias.add(categoria);
 				}
-	
+
 				return categorias;
 			}
 		} catch (SQLException e) {

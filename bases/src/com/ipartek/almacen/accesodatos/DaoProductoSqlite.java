@@ -65,7 +65,7 @@ public class DaoProductoSqlite extends DaoProductoJdbc implements DaoProducto {
 
 	@Override
 	public void borrar(Long id) {
-		ejecutarCambio(SQL_DELETE, pst -> productoAFila(new Producto(id, null, null, null), pst));
+		ejecutarCambio(SQL_DELETE, pst -> productoAFila(Producto.builder().id(id).build(), pst));
 	}
 
 	static {
