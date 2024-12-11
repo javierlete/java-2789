@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.Consumer;
 
 import com.ipartek.almacen.pojos.Producto;
@@ -55,7 +56,7 @@ public abstract class DaoProductoJdbc extends DaoJdbc implements DaoProducto {
 		return i.hasNext() ? i.next() : null;
 	}
 	
-	protected Iterable<Producto> ejecutarConsulta(String sql, Consumer<PreparedStatement> codigo) {
+	protected Collection<Producto> ejecutarConsulta(String sql, Consumer<PreparedStatement> codigo) {
 		try (Connection con = getConexion(); PreparedStatement pst = con.prepareStatement(sql);) {
 	
 			codigo.accept(pst);

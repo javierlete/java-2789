@@ -17,7 +17,7 @@ public class DaoProductoJpa extends DaoJpa implements DaoProducto {
 		
 		t.begin();
 		
-		var productos = em.createQuery("from Producto", Producto.class).getResultList();
+		var productos = em.createQuery("from Producto p join fetch p.categoria", Producto.class).getResultList();
 		
 		t.commit();
 		

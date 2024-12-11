@@ -1,6 +1,7 @@
 package com.ipartek.almacen.accesodatos;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import com.ipartek.almacen.pojos.Producto;
 
@@ -45,7 +46,7 @@ public class DaoProductoSqlite extends DaoProductoJdbc implements DaoProducto {
 	}
 
 	@Override
-	public Iterable<Producto> obtenerPorIdCategoria(Long id) {
+	public Collection<Producto> obtenerPorIdCategoria(Long id) {
 		return ejecutarConsulta(SQL_SELECT_CATEGORIA, pst -> datosSentencia(pst, id));
 	}
 
