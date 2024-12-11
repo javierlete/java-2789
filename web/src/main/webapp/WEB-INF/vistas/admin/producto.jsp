@@ -39,6 +39,19 @@
 			<div class="invalid-feedback">La fecha debe ser posterior o igual a la actual</div>
 		</div>
 	</div>
+	<div class="row mb-3">
+		<label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+		<div class="col-sm-10">
+			<select class="form-select ${errores.categoria != null ? 'is-invalid' : '' }" id="categoria"
+				name="categoria">
+				<option value="0">Ninguna</option>
+				<c:forEach items="${categorias}" var="c">
+					<option value="${c.id}" ${c.id == producto.categoria.id ? 'selected' : ''}>${c.nombre}</option>
+				</c:forEach>
+			</select>
+			<div class="invalid-feedback"></div>
+		</div>
+	</div>
 
 	<button type="submit" class="btn btn-primary">Guardar</button>
 

@@ -1,8 +1,12 @@
 package com.ipartek.almacen.negocio;
 
+import java.util.Collection;
+
 import com.ipartek.almacen.accesodatos.AccesoDatosException;
+import com.ipartek.almacen.accesodatos.DaoCategoria;
 import com.ipartek.almacen.accesodatos.DaoProducto;
 import com.ipartek.almacen.fabrica.Fabrica;
+import com.ipartek.almacen.pojos.Categoria;
 import com.ipartek.almacen.pojos.Producto;
 
 import lombok.extern.java.Log;
@@ -11,9 +15,10 @@ import lombok.extern.java.Log;
 public class UsuarioNegocioImpl implements UsuarioNegocio {
 	
 	private final DaoProducto daoProductos = Fabrica.getDaoProducto();
+	private final DaoCategoria daoCategorias = Fabrica.getDaoCategoria();
 	
 	@Override
-	public Iterable<Producto> verProductos() {
+	public Collection<Producto> verProductos() {
 		return daoProductos.obtenerTodos();
 	}
 
@@ -32,5 +37,10 @@ public class UsuarioNegocioImpl implements UsuarioNegocio {
 		// daoBusquedas.insertar(new Busqueda(LocalDateTime.now(), nombre));
 		log.info("BUSQUEDA: " + nombre);
 		return daoProductos.obtenerPorNombreParcial(nombre);
+	}
+
+	@Override
+	public Collection<Categoria> verCategorias() {
+		return daoCategorias.obtenerTodos();
 	}
 }
