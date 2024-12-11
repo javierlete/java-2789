@@ -10,6 +10,8 @@
             <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:bases-jpa.db" />
             <property name="jakarta.persistence.jdbc.user" value="" />
             <property name="jakarta.persistence.jdbc.password" value="" />
+            
+            <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 
             <!-- Automatically export the schema -->
             <property name="jakarta.persistence.schema-generation.database.action" value="create" />
