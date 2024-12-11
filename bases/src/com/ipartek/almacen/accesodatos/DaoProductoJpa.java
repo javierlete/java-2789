@@ -1,6 +1,7 @@
 package com.ipartek.almacen.accesodatos;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import com.ipartek.almacen.pojos.Producto;
 
@@ -11,13 +12,13 @@ public class DaoProductoJpa extends DaoJpa implements DaoProducto {
 	}
 
 	@Override
-	public Iterable<Producto> obtenerTodos() {
+	public Collection<Producto> obtenerTodos() {
 		var em = FABRICA_JPA.createEntityManager();
 		var t = em.getTransaction();
 		
 		t.begin();
 		
-		var productos = em.createQuery("from Producto p join fetch p.categoria", Producto.class).getResultList();
+		var productos = em.createQuery("from Producto p left join fetch p.categoria", Producto.class).getResultList();
 		
 		t.commit();
 		

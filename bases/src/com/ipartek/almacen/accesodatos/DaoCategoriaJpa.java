@@ -1,5 +1,7 @@
 package com.ipartek.almacen.accesodatos;
 
+import java.util.Collection;
+
 import com.ipartek.almacen.pojos.Categoria;
 
 public class DaoCategoriaJpa extends DaoJpa implements DaoCategoria {
@@ -9,7 +11,7 @@ public class DaoCategoriaJpa extends DaoJpa implements DaoCategoria {
 	}
 
 	@Override
-	public Iterable<Categoria> obtenerTodos() {
+	public Collection<Categoria> obtenerTodos() {
 		var em = FABRICA_JPA.createEntityManager();
 		var t = em.getTransaction();
 		

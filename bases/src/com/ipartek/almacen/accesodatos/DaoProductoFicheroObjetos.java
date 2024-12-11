@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.TreeMap;
 import java.util.function.Supplier;
 
@@ -32,7 +33,7 @@ public class DaoProductoFicheroObjetos extends DaoProductoTreeMap implements Dao
 	}
 
 	@Override
-	public Iterable<Producto> obtenerTodos() {
+	public Collection<Producto> obtenerTodos() {
 		return lectura(() -> super.obtenerTodos());
 	}
 

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.Consumer;
 
 import com.ipartek.almacen.pojos.Categoria;
@@ -28,7 +29,7 @@ public abstract class DaoCategoriaJdbc extends DaoJdbc implements DaoCategoria {
 		return i.hasNext() ? i.next() : null;
 	}
 
-	protected Iterable<Categoria> ejecutarConsulta(String sql, Consumer<PreparedStatement> codigo) {
+	protected Collection<Categoria> ejecutarConsulta(String sql, Consumer<PreparedStatement> codigo) {
 		try (Connection con = getConexion(); PreparedStatement pst = con.prepareStatement(sql);) {
 
 			codigo.accept(pst);

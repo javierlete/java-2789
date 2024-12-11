@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 
 import com.ipartek.almacen.pojos.Categoria;
@@ -26,7 +27,7 @@ public class DaoCategoriaSqlite extends DaoCategoriaJdbc implements DaoCategoria
 	}
 
 	@Override
-	public Iterable<Categoria> obtenerTodos() {
+	public Collection<Categoria> obtenerTodos() {
 		return ejecutarConsulta(SQL_SELECT, pst -> {
 		});
 	}

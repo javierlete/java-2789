@@ -1,7 +1,9 @@
 package com.ipartek.almacen.accesodatos;
 
+import java.util.Collection;
+
 public interface Dao<T> {
-	default Iterable<T> obtenerTodos() {
+	default Collection<T> obtenerTodos() {
 		throw new AccesoDatosException("NO IMPLEMENTADO");
 	}
 

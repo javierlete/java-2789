@@ -2,6 +2,7 @@ package com.ipartek.almacen.accesodatos;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.TreeMap;
 
 import com.ipartek.almacen.pojos.Producto;
@@ -21,7 +22,7 @@ public class DaoProductoTreeMap implements DaoProducto {
 	}
 
 	@Override
-	public Iterable<Producto> obtenerTodos() {
+	public Collection<Producto> obtenerTodos() {
 		return productos.values();
 	}
 

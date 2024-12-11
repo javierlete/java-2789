@@ -22,7 +22,7 @@ public class DaoProductoSqlite extends DaoProductoJdbc implements DaoProducto {
 	}
 
 	@Override
-	public Iterable<Producto> obtenerTodos() {
+	public Collection<Producto> obtenerTodos() {
 		return ejecutarConsulta(SQL_SELECT, pst -> datosSentencia(pst));
 	}
 
