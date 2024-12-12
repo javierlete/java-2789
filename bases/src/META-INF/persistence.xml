@@ -7,7 +7,7 @@
 
         <properties>    
             <!-- Database connection settings -->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:bases-jpa.db" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:bases-jpa.db?foreign_keys=on" />
             <property name="jakarta.persistence.jdbc.user" value="" />
             <property name="jakarta.persistence.jdbc.password" value="" />
             
