@@ -1,6 +1,6 @@
 package com.ipartek.almacen.accesodatos;
 
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -15,7 +15,7 @@ public class DaoJpa {
 	protected static final EntityManagerFactory FABRICA_JPA = Persistence
 			.createEntityManagerFactory("com.ipartek.almacen.pojos");
 
-	protected void inTransaction(Consumer<EntityManager> work) {
+	protected <T> T enTransaccion(Function<EntityManager, T> codigo) {
 
 		EntityTransaction transaction = null;
 
@@ -23,8 +23,10 @@ public class DaoJpa {
 			transaction = entityManager.getTransaction();
 
 			transaction.begin();
-			work.accept(entityManager);
+			var resultado = codigo.apply(entityManager);
 			transaction.commit();
+			
+			return resultado;
 		} catch (Exception e) {
 			if (transaction != null && transaction.isActive()) {
 				transaction.rollback();
