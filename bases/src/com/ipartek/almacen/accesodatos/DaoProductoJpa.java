@@ -19,6 +19,10 @@ public class DaoProductoJpa extends DaoJpa implements DaoProducto {
 
 	@Override
 	public Producto obtenerPorId(Long id) {
+		if(id == null) {
+			throw new AccesoDatosException("No se puede buscar por null");
+		}
+		
 		return enTransaccion(em -> em.find(Producto.class, id));
 	}
 
