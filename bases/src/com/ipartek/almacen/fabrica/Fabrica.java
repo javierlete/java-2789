@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import com.ipartek.almacen.accesodatos.DaoCategoria;
 import com.ipartek.almacen.accesodatos.DaoProducto;
+import com.ipartek.almacen.accesodatos.DaoUsuario;
 import com.ipartek.almacen.negocio.AdminNegocio;
 import com.ipartek.almacen.negocio.AdminNegocioImpl;
 import com.ipartek.almacen.negocio.UsuarioNegocio;
@@ -14,6 +15,7 @@ import com.ipartek.almacen.negocio.UsuarioNegocioImpl;
 public class Fabrica {
 	private static DaoProducto daoProducto = null;
 	private static DaoCategoria daoCategoria = null;
+	private static DaoUsuario daoUsuario = null;
 	private static UsuarioNegocio usuarioNegocio = null;
 	private static AdminNegocio adminNegocio = null;
 	
@@ -24,6 +26,7 @@ public class Fabrica {
 			
 			var daoProductoClase = props.getProperty("dao.producto.implementacion");
 			var daoCategoriaClase = props.getProperty("dao.categoria.implementacion");
+			var daoUsuarioClase = props.getProperty("dao.usuario.implementacion");
 			
 			var url = props.getProperty("dao.url");
 			var user = props.getProperty("dao.user");
@@ -31,6 +34,7 @@ public class Fabrica {
 			
 			daoProducto = (DaoProducto) Class.forName(daoProductoClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 			daoCategoria = (DaoCategoria) Class.forName(daoCategoriaClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
+			daoUsuario= (DaoUsuario) Class.forName(daoUsuarioClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 			
 			usuarioNegocio = new UsuarioNegocioImpl();
 			adminNegocio = new AdminNegocioImpl();
@@ -53,5 +57,9 @@ public class Fabrica {
 
 	public static AdminNegocio getAdminNegocio() {
 		return adminNegocio;
+	}
+
+	public static DaoUsuario getDaoUsuario() {
+		return daoUsuario;
 	}
 }
