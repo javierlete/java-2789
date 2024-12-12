@@ -2,6 +2,9 @@ package com.ipartek.almacen.controladores;
 
 import java.io.IOException;
 
+import com.ipartek.almacen.fabrica.Fabrica;
+import com.ipartek.almacen.pojos.Usuario;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -32,13 +35,17 @@ public class LoginServlet extends HttpServlet {
 		
 		// Convertir los datos
 		// Empaquetarlos en objetos
-		// Ejecutar la lógica de negocio
 		
-		if("javier@email.net".equals(email) && "javier".equals(password)) {
+		var usuario = Usuario.builder().email(email).password(password).build();
+		
+		// Ejecutar la lógica de negocio
+		var usuarioLogueado = Fabrica.getUsuarioNegocio().autenticar(usuario);
+		
+		if(usuarioLogueado != null) {
 			HttpSession session = request.getSession();
 			
 			// Empaquetar datos para la pantalla
-			session.setAttribute("email", email);
+			session.setAttribute("usuario", usuarioLogueado);
 			
 			// Mostrar la siguiente pantalla
 			response.sendRedirect(request.getContextPath() + "/admin/");

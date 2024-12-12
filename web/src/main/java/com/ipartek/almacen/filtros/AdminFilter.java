@@ -2,6 +2,8 @@ package com.ipartek.almacen.filtros;
 
 import java.io.IOException;
 
+import com.ipartek.almacen.pojos.Usuario;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -21,9 +23,9 @@ public class AdminFilter extends HttpFilter implements Filter {
 		var res = (HttpServletResponse) response;
 		
 		var session = req.getSession();
-		var email = session.getAttribute("email");
-
-		if(email == null) {
+		var usuario = (Usuario) session.getAttribute("usuario");
+		
+		if(usuario == null || !usuario.getRol().getNombre().equals("ADMIN")) {
 			res.sendRedirect(req.getContextPath() + "/login");
 			return;
 		}
