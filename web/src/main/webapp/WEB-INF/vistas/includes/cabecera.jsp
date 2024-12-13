@@ -47,6 +47,7 @@
 									sesión</a></li>
 						</c:when>
 						<c:otherwise>
+							<li class="nav-item"><a class="nav-link" href="registro">Registro</a></li>
 							<li class="nav-item"><a class="nav-link" href="login">Iniciar
 									sesión</a></li>
 						</c:otherwise>

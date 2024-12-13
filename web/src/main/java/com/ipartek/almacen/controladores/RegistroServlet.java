@@ -3,6 +3,7 @@ package com.ipartek.almacen.controladores;
 import java.io.IOException;
 
 import com.ipartek.almacen.fabrica.Fabrica;
+import com.ipartek.almacen.negocio.NegocioException;
 import com.ipartek.almacen.pojos.Usuario;
 
 import jakarta.servlet.ServletException;
@@ -12,8 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/registro")
+public class RegistroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,40 +25,38 @@ public class LoginServlet extends HttpServlet {
 		// Empaquetar datos para la pantalla
 		// Mostrar la siguiente pantalla
 		
-		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/vistas/registro.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Recibir datos de petición
 		
+		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 		// Convertir los datos
 		// Empaquetarlos en objetos
 		
-		var usuario = Usuario.builder().email(email).password(password).build();
+		var usuario = Usuario.builder().nombre(nombre).email(email).password(password).build();
 		
 		// Ejecutar la lógica de negocio
-		var usuarioLogueado = Fabrica.getUsuarioNegocio().autenticar(usuario);
+		Usuario usuarioRegistrado;
 		
-		if(usuarioLogueado != null) {
-			HttpSession session = request.getSession();
-			
-			// Empaquetar datos para la pantalla
-			session.setAttribute("usuario", usuarioLogueado);
-			
-			// Mostrar la siguiente pantalla
-			response.sendRedirect(request.getContextPath() + "/");
-			
+		try {
+			usuarioRegistrado = Fabrica.getUsuarioNegocio().registrar(usuario);
+		} catch (NegocioException e) {
+			request.setAttribute("errores", "Error en el registro");
+			request.getRequestDispatcher("/WEB-INF/vistas/registro.jsp").forward(request, response);
 			return;
 		}
 		
+		HttpSession session = request.getSession();
+		
 		// Empaquetar datos para la pantalla
-		request.setAttribute("errores", "El usuario o la contraseña son incorrectos");
+		session.setAttribute("usuario", usuarioRegistrado);
 		
 		// Mostrar la siguiente pantalla
-		request.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(request, response);
-		
+		response.sendRedirect(request.getContextPath() + "/");
 	}
 }
