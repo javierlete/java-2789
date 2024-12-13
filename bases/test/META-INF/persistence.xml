@@ -1,0 +1,33 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="com.ipartek.almacen.pojos">   
+		<class>com.ipartek.almacen.pojos.Usuario</class>
+		<class>com.ipartek.almacen.pojos.Rol</class>
+		<class>com.ipartek.almacen.pojos.Producto</class>
+		<class>com.ipartek.almacen.pojos.Categoria</class>
+
+        <properties>    
+            <!-- Database connection settings -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:bases-jpa-test.db?foreign_keys=on" />
+            <property name="jakarta.persistence.jdbc.user" value="" />
+            <property name="jakarta.persistence.jdbc.password" value="" />
+            
+            <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC" />
+            <!-- <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/> -->
+
+            <!-- Automatically export the schema -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create" />
+
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop"/> -->
+            <!-- Echo all executed SQL to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.highlight_sql" value="true" />
+       </properties>
+
+    </persistence-unit>
+
+</persistence>

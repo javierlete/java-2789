@@ -61,4 +61,13 @@ public class UsuarioNegocioImpl implements UsuarioNegocio {
 	private boolean validarPassword(String usuarioPassword, String usuarioEmailPassword) {
 		return usuarioEmailPassword.equals(usuarioPassword);
 	}
+
+	@Override
+	public Usuario registrar(Usuario usuarioNuevo) {
+		try {
+			return daoUsuarios.insertar(usuarioNuevo);
+		} catch (Exception e) {
+			throw new NegocioException("Ha habido un error en la inserción", e);
+		}
+	}
 }

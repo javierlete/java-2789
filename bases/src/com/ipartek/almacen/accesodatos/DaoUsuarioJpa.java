@@ -12,11 +12,20 @@ public class DaoUsuarioJpa extends DaoJpa implements DaoUsuario {
 	@Override
 	public Usuario obtenerPorEmail(String email) {
 		return enTransaccion(em -> {
-			try { 
-				return em.createQuery("from Usuario u join fetch u.rol where u.email = :email", Usuario.class).setParameter("email", email).getSingleResult();
-			} catch(NoResultException e) {
+			try {
+				return em.createQuery("from Usuario u join fetch u.rol where u.email = :email", Usuario.class)
+						.setParameter("email", email).getSingleResult();
+			} catch (NoResultException e) {
 				return null;
 			}
+		});
+	}
+
+	@Override
+	public Usuario insertar(Usuario usuario) {
+		return enTransaccion(em -> {
+			em.persist(usuario);
+			return usuario;
 		});
 	}
 

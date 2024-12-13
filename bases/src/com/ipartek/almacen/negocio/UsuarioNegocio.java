@@ -12,4 +12,5 @@ public interface UsuarioNegocio {
 	Iterable<Producto> buscarProductosPorNombre(String nombre);
 	Collection<Categoria> verCategorias();
 	Usuario autenticar(Usuario usuario);
+	Usuario registrar(Usuario usuarioNuevo);
 }
