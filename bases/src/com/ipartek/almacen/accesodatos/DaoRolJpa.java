@@ -8,6 +8,13 @@ public class DaoRolJpa extends DaoJpa implements DaoRol {
 	}
 
 	@Override
+	public Rol obtenerPorId(Long id) {
+		return enTransaccion(em -> em.find(Rol.class, id));
+	}
+
+
+
+	@Override
 	public Rol insertar(Rol rol) {
 		return enTransaccion(em -> {
 			em.persist(rol);

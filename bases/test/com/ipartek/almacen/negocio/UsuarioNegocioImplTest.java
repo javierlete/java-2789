@@ -30,13 +30,12 @@ class UsuarioNegocioImplTest {
 	private static Usuario usuario1 = Usuario.builder().email("javier@email.net").password("javier").nombre("Javier")
 			.build();
 	private static Usuario usuario2 = Usuario.builder().email("pepe@email.net").password("pepe").nombre("Pepe").build();
-	private static Usuario USUARIO3 = Usuario.builder().id(3L).nombre("Nuevo").email("nuevo@email.net").password("nuevo")
+	private static Usuario usuario3 = Usuario.builder().id(3L).nombre("Nuevo").email("nuevo@email.net").password("nuevo")
 			.build();
 
 	private static Usuario USUARIO_NUEVO_EMAIL_EXISTENTE = Usuario.builder().email("javier@email.net").password("javierasdfasd").nombre("Javier asdfasdf")
 			.build();
 
-	
 	private static Usuario USUARIO_NUEVO = Usuario.builder().nombre("Nuevo").email("nuevo@email.net").password("nuevo")
 			.build();
 
@@ -76,6 +75,7 @@ class UsuarioNegocioImplTest {
 		
 		usuario1.setRol(rol1);
 		usuario2.setRol(rol2);
+		usuario3.setRol(rol2);
 		
 		daoUsuario.insertar(usuario1);
 		daoUsuario.insertar(usuario2);
@@ -139,7 +139,7 @@ class UsuarioNegocioImplTest {
 		var usuario = negocio.registrar(USUARIO_NUEVO);
 
 		assertNotNull(usuario);
-		assertEquals(USUARIO3, usuario);
+		assertEquals(usuario3, usuario);
 		
 		assertThrows(NegocioException.class, () -> negocio.registrar(USUARIO_NUEVO_EMAIL_EXISTENTE));
 		assertThrows(NegocioException.class, () -> negocio.registrar(Usuario.builder().build()));

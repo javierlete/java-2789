@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.ipartek.almacen.accesodatos.AccesoDatosException;
 import com.ipartek.almacen.accesodatos.DaoCategoria;
 import com.ipartek.almacen.accesodatos.DaoProducto;
+import com.ipartek.almacen.accesodatos.DaoRol;
 import com.ipartek.almacen.accesodatos.DaoUsuario;
 import com.ipartek.almacen.fabrica.Fabrica;
 import com.ipartek.almacen.pojos.Categoria;
@@ -19,6 +20,7 @@ public class UsuarioNegocioImpl implements UsuarioNegocio {
 	private final DaoProducto daoProductos = Fabrica.getDaoProducto();
 	private final DaoCategoria daoCategorias = Fabrica.getDaoCategoria();
 	private final DaoUsuario daoUsuarios = Fabrica.getDaoUsuario();
+	private final DaoRol daoRol = Fabrica.getDaoRol();
 	
 	@Override
 	public Collection<Producto> verProductos() {
@@ -65,6 +67,7 @@ public class UsuarioNegocioImpl implements UsuarioNegocio {
 	@Override
 	public Usuario registrar(Usuario usuarioNuevo) {
 		try {
+			usuarioNuevo.setRol(daoRol.obtenerPorId(2L));
 			return daoUsuarios.insertar(usuarioNuevo);
 		} catch (Exception e) {
 			throw new NegocioException("Ha habido un error en la inserción", e);
