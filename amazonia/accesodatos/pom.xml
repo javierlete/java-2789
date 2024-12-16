@@ -51,6 +51,12 @@
 			<artifactId>hibernate-community-dialects</artifactId>
 			<version>6.6.3.Final</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.ipartek.formacion</groupId>
+			<artifactId>entidades</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>
