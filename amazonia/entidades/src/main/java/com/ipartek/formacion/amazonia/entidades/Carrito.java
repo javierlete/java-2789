@@ -1,4 +1,4 @@
-package com.ipartek.formacion.entidades;
+package com.ipartek.formacion.amazonia.entidades;
 
 import java.util.Collection;
 
