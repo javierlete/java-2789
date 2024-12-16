@@ -52,5 +52,6 @@
 	<modules>
 		<module>entidades</module>
 		<module>accesodatos</module>
+		<module>fabrica</module>
 	</modules>
 </project>
