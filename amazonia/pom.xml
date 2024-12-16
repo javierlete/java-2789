@@ -42,5 +42,6 @@
   </dependencies>
   <modules>
     <module>entidades</module>
+    <module>accesodatos</module>
   </modules>
 </project>
