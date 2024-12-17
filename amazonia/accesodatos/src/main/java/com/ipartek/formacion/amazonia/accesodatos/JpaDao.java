@@ -8,12 +8,11 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class JpaDao {
-	public JpaDao(String nousado1, String nousado2, String nousado3) {
+	private EntityManagerFactory entityManagerFactory;
 
+	public JpaDao(String url, String nousado2, String nousado3) {
+		entityManagerFactory = Persistence.createEntityManagerFactory(url);
 	}
-
-	protected static final EntityManagerFactory FABRICA_JPA = Persistence
-			.createEntityManagerFactory("com.ipartek.formacion.amazonia.entidades");
 
 	protected <T> T enTransaccion(Function<EntityManager, T> codigo) {
 
@@ -21,7 +20,7 @@ public class JpaDao {
 		EntityManager entityManager = null;
 
 		try {
-			entityManager = FABRICA_JPA.createEntityManager();
+			entityManager = entityManagerFactory.createEntityManager();
 			transaction = entityManager.getTransaction();
 
 			transaction.begin();

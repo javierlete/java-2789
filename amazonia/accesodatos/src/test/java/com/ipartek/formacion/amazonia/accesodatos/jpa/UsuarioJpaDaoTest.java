@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.ipartek.formacion.amazonia.accesodatos.UsuarioDao;
 import com.ipartek.formacion.amazonia.entidades.Usuario;
 
 class UsuarioJpaDaoTest {
@@ -53,9 +54,10 @@ class UsuarioJpaDaoTest {
 		setUpBeforeClass();
 	}
 
+	UsuarioDao dao = new UsuarioJpaDao("com.ipartek.formacion.amazonia.entidades.test", null, null);
+
 	@Test
 	void testObtenerPorEmail() {
-		var dao = new UsuarioJpaDao(null, null, null);
 		var usuarioOk = dao.obtenerPorEmail("javier@email.net");
 		
 		assertNotNull(usuarioOk);
