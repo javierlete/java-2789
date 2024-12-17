@@ -3,7 +3,12 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="com.ipartek.formacion.amazonia.entidades">   
+    <persistence-unit name="com.ipartek.formacion.amazonia.entidades">
+    	<class>com.ipartek.formacion.amazonia.entidades.Usuario</class>
+    	<class>com.ipartek.formacion.amazonia.entidades.Cliente</class>
+    	<class>com.ipartek.formacion.amazonia.entidades.Factura</class>
+    	<class>com.ipartek.formacion.amazonia.entidades.Factura$Linea</class>
+    	<class>com.ipartek.formacion.amazonia.entidades.Producto</class>
 
         <properties>    
             <!-- Database connection settings -->
