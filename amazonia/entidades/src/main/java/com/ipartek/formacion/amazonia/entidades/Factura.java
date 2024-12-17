@@ -61,7 +61,7 @@ public class Factura {
 	@Size(min = 2, max = 50)
 	private String nombre;
 
-	@OneToMany
+	@OneToMany(mappedBy = "factura")
 	private Collection<Linea> lineas;
 
 	@Data
