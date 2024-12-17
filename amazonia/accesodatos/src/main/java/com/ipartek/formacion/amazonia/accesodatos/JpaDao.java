@@ -9,23 +9,25 @@ import jakarta.persistence.Persistence;
 
 public class JpaDao {
 	public JpaDao(String nousado1, String nousado2, String nousado3) {
-		
+
 	}
-	
+
 	protected static final EntityManagerFactory FABRICA_JPA = Persistence
-			.createEntityManagerFactory("com.ipartek.formacion.");
+			.createEntityManagerFactory("com.ipartek.formacion.amazonia.entidades");
 
 	protected <T> T enTransaccion(Function<EntityManager, T> codigo) {
 
 		EntityTransaction transaction = null;
+		EntityManager entityManager = null;
 
-		try (EntityManager entityManager = FABRICA_JPA.createEntityManager();) {
+		try {
+			entityManager = FABRICA_JPA.createEntityManager();
 			transaction = entityManager.getTransaction();
 
 			transaction.begin();
 			var resultado = codigo.apply(entityManager);
 			transaction.commit();
-			
+
 			return resultado;
 		} catch (Exception e) {
 			if (transaction != null && transaction.isActive()) {
@@ -33,6 +35,10 @@ public class JpaDao {
 			}
 
 			throw new AccesoDatosException("Error en la operación JPA", e);
+		} finally {
+			if (entityManager != null) {
+				entityManager.close();
+			}
 		}
 	}
 }
