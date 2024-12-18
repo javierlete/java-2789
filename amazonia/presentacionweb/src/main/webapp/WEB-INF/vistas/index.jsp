@@ -8,7 +8,7 @@
 	<c:forEach items="${productos}" var="p">
 		<div class="col">
 			<div class="card h-100">
-				<img src="https://picsum.photos/400/300?${p.id}" class="card-img-top" alt="...">
+				<img src="imgs/${p.id}.jpg" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">${p.nombre}</h5>
 				</div>
