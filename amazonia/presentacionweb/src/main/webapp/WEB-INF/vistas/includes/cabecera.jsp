@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 
@@ -10,11 +10,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Amazonia</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
+<link rel="icon" href="imgs/cart4.svg">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -36,7 +33,7 @@
 					<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN' }">
 						<li class="nav-item"><a class="nav-link" href="admin/">Administración</a></li>
 					</c:if>
-					
+
 					<c:if test="${sessionScope.usuario != null}">
 						<li class="navbar-text">${sessionScope.usuario.nombre}</li>
 					</c:if>
