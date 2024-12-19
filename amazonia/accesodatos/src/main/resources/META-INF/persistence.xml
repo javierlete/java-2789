@@ -19,8 +19,9 @@
             <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 
             <!-- Automatically export the schema -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="create" />
-
+            <!-- <property name="jakarta.persistence.schema-generation.database.action" value="create" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			
             <!-- Echo all executed SQL to console -->
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
