@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -32,6 +33,14 @@ public class Producto {
 	@NotBlank
 	@Size(min = 3, max = 50)
 	private String nombre;
+
+	@Lob
+	@Size(min = 3, max = 2000)
+	private String descripcion;
+	
+	@NotNull
+	@Size(min = 3, max = 256)
+	private String url;
 	
 	@NotNull
 	@Min(0)
