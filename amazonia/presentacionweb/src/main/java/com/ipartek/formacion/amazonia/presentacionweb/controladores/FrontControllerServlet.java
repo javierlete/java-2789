@@ -24,10 +24,29 @@ public class FrontControllerServlet extends HttpServlet {
 		
 		switch(pathInfo) {
 		case "/" -> index();
+		case "/detalle" -> detalle();
 		default -> response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
 	}
 	
+	private void detalle() throws ServletException, IOException {
+		// Recibir información de la petición
+		String sId = request.getParameter("id");
+		
+		// Convertir
+		Long id = Long.parseLong(sId);
+		
+		// Empaquetar en modelo
+		// Lógica de negocio
+		var producto = anonimoNegocio.detalleProducto(id);
+		
+		// Empaquetar información para la vista
+		request.setAttribute("producto", producto);
+		
+		// Ir a la vista
+		reenviar("/detalle.jsp");
+	}
+
 	private void index() throws ServletException, IOException {
 		var productos = anonimoNegocio.listarProductos();
 		

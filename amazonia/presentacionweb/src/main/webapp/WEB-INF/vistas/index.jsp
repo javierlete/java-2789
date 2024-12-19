@@ -11,6 +11,7 @@
 				<img src="imgs/${p.id}.jpg" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">${p.nombre}</h5>
+					<a class="btn btn-primary stretched-link" href="fc/detalle?id=${p.id}">Ver detalle</a>
 				</div>
 				<div class="card-footer">
 					<small class="text-body-secondary">

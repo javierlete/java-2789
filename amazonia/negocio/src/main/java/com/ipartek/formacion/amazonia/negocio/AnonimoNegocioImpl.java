@@ -32,4 +32,10 @@ public class AnonimoNegocioImpl implements AnonimoNegocio {
 		return passwordAlmacenada.equals(passwordRecibida);
 	}
 
+	@Override
+	public Producto detalleProducto(Long id) {
+		return productoDao.obtenerPorId(id);
+	}
+
+	
 }

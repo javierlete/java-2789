@@ -16,4 +16,11 @@ public class ProductoJpaDao extends JpaDao implements ProductoDao {
 	public Collection<Producto> obtenerTodos() {
 		return enTransaccion(em -> em.createQuery("from Producto", Producto.class).getResultList());
 	}
+
+	@Override
+	public Producto obtenerPorId(Long id) {
+		return enTransaccion(em -> em.find(Producto.class, id));
+	}
+	
+	
 }
