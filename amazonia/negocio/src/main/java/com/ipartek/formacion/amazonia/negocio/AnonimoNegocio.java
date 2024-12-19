@@ -30,4 +30,8 @@ public interface AnonimoNegocio {
 	default Carrito vaciarCarrito(Carrito carrito) {
 		throw new NegocioException("NO IMPLEMENTADO");
 	}
+
+	default Producto detalleProducto(String url) {
+		throw new NegocioException("NO IMPLEMENTADO");
+	}
 }

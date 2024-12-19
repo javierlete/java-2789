@@ -37,5 +37,10 @@ public class AnonimoNegocioImpl implements AnonimoNegocio {
 		return productoDao.obtenerPorId(id);
 	}
 
+	@Override
+	public Producto detalleProducto(String url) {
+		return productoDao.obtenerPorUrl(url);
+	}
+
 	
 }
