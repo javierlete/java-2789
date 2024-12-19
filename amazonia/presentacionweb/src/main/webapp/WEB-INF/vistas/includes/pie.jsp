@@ -5,6 +5,5 @@
 	<p>&copy;2024 Javier Lete</p>
 </footer>
 
-<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
