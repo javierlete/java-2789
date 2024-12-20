@@ -110,13 +110,13 @@ public class FrontControllerServlet extends HttpServlet {
 		}
 
 		request.setAttribute("login", "");
-		
+
 		reenviar("/index.jsp");
 	}
 
 	private void logout() throws IOException {
 		session.invalidate();
-		
+
 		redirigir("/");
 	}
 
@@ -134,15 +134,25 @@ public class FrontControllerServlet extends HttpServlet {
 	}
 
 	private void adminProducto() throws ServletException, IOException {
-		if(esPost()) {
-			
+		if (esPost()) {
+			// POST
 		} else {
+			// GET
+			String sId = request.getParameter("id");
+			if (sId != null) {
+				var id = Long.parseLong(sId);
+				
+				var producto = adminNegocio.detalleProducto(id);
+				
+				request.setAttribute("producto", producto);
+			}
+
 			reenviar("/admin/producto.jsp");
 		}
 	}
 
 	private void adminProductoBorrar() {
-		
+
 	}
 
 	private void adminProductos() throws ServletException, IOException {
@@ -151,7 +161,7 @@ public class FrontControllerServlet extends HttpServlet {
 		request.setAttribute("productos", productos);
 		reenviar("/admin/productos.jsp");
 	}
-	
+
 	private void reenviar(String vista) throws ServletException, IOException {
 		request.getRequestDispatcher(VISTAS + vista).forward(request, response);
 	}
@@ -167,5 +177,5 @@ public class FrontControllerServlet extends HttpServlet {
 	private void notFound() {
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 	}
-	
+
 }
