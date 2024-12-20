@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<form action="fc/admin/producto" method="post">
+<form action="fc/admin/producto" method="post" enctype="multipart/form-data">
 	<%-- <p>${producto}</p> --%>
 
 	<div class="row mb-3">
@@ -29,8 +29,21 @@
 	<div class="row mb-3">
 		<label for="url" class="col-sm-2 col-form-label">URL</label>
 		<div class="col-sm-10">
-			<input type="url" class="form-control" id="url"
-				name="url" value="${producto.url}">
+			<input class="form-control" id="url" name="url"
+				value="${producto.url}">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+		<div class="col-sm-10">
+			<input type="file" accept="image/jpeg" class="form-control" id="imagen" name="imagen">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+		<div class="col-sm-10">
+			<textarea rows="7" class="form-control" id="descripcion"
+				name="descripcion">${producto.descripcion}</textarea>
 		</div>
 	</div>
 	<div class="row mb-3">
@@ -39,5 +52,14 @@
 		</div>
 	</div>
 </form>
+
+<script src="js/tinymce/tinymce.min.js"></script>
+<script>
+	tinymce.init({
+		selector : 'textarea',
+		language: 'es',
+		menubar: false,
+	});
+</script>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

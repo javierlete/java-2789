@@ -3,19 +3,23 @@ package com.ipartek.formacion.amazonia.presentacionweb.controladores;
 import static com.ipartek.formacion.amazonia.presentacionweb.controladores.Globales.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import com.ipartek.formacion.amazonia.entidades.Producto;
 import com.ipartek.formacion.amazonia.entidades.Usuario;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import lombok.extern.java.Log;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 @Log
 @WebServlet("/fc/*")
 public class FrontControllerServlet extends HttpServlet {
@@ -136,14 +140,43 @@ public class FrontControllerServlet extends HttpServlet {
 	private void adminProducto() throws ServletException, IOException {
 		if (esPost()) {
 			// POST
+			String sId = request.getParameter("id");
+			String nombre = request.getParameter("nombre");
+			String sPrecio = request.getParameter("precio");
+			String url = request.getParameter("url");
+			String descripcion = request.getParameter("descripcion");
+			
+			Long id = sId.isBlank() ? null : Long.parseLong(sId);
+			BigDecimal precio = new BigDecimal(sPrecio);
+			
+			Producto producto = Producto.builder().id(id).nombre(nombre).precio(precio).url(url).descripcion(descripcion).build();
+
+			Producto productoConfirmado;
+			
+			if(producto.getId() == null) {
+				productoConfirmado = adminNegocio.anadirProducto(producto);
+			} else {
+				productoConfirmado = adminNegocio.modificarProducto(producto);
+			}
+			
+			// https://www.baeldung.com/upload-file-servlet
+			String rutaImagenes = getServletContext().getRealPath("") + "/imgs/";
+
+			Part parteImagen = request.getPart("imagen");
+			
+			if(!parteImagen.getSubmittedFileName().isBlank()) {
+				parteImagen.write(rutaImagenes + productoConfirmado.getId() + ".jpg");
+			}
+			
+			redirigir("/admin");
 		} else {
 			// GET
 			String sId = request.getParameter("id");
 			if (sId != null) {
 				var id = Long.parseLong(sId);
-				
+
 				var producto = adminNegocio.detalleProducto(id);
-				
+
 				request.setAttribute("producto", producto);
 			}
 

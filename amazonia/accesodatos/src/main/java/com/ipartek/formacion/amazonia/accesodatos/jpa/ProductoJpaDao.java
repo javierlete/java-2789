@@ -35,4 +35,22 @@ public class ProductoJpaDao extends JpaDao implements ProductoDao {
 		});
 	}
 
+	@Override
+	public Producto insertar(Producto producto) {
+		return enTransaccion(em -> {
+			em.persist(producto);
+			return producto;
+		});
+	}
+
+	@Override
+	public Producto modificar(Producto producto) {
+		return enTransaccion(em -> {
+			em.merge(producto);
+			return producto;
+		});
+	}
+	
+	
+
 }
