@@ -10,6 +10,7 @@
 			<th>Nombre</th>
 			<th>Precio</th>
 			<th>Url</th>
+			<th>OPCIONES</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,9 +20,15 @@
 				<td>${p.nombre}</td>
 				<td>${p.precio}</td>
 				<td>${p.url}</td>
+				<td><a class="btn btn-sm btn-primary" href="fc/admin/producto?id=${p.id}">Editar</a> <a
+					class="btn btn-sm btn-danger" href="fc/admin/producto-borrar?id=${p.id}">Borrar</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
+	<tfoot class="table-dark">
+		<tr>
+			<td colspan="4"></td>
+			<td><a class="btn btn-sm btn-primary" href="fc/admin/producto">Añadir</a></td>
 </table>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
