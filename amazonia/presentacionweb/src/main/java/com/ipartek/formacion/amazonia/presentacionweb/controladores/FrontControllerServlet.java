@@ -90,7 +90,7 @@ public class FrontControllerServlet extends HttpServlet {
 	}
 
 	private void login() throws ServletException, IOException {
-		if ("POST".equals(request.getMethod())) {
+		if (esPost()) {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 
@@ -127,8 +127,22 @@ public class FrontControllerServlet extends HttpServlet {
 		}
 
 		switch (partes[2]) {
+		case "producto" -> adminProducto();
+		case "producto-borrar" -> adminProductoBorrar();
 		default -> notFound();
 		}
+	}
+
+	private void adminProducto() throws ServletException, IOException {
+		if(esPost()) {
+			
+		} else {
+			reenviar("/admin/producto.jsp");
+		}
+	}
+
+	private void adminProductoBorrar() {
+		
 	}
 
 	private void adminProductos() throws ServletException, IOException {
@@ -144,6 +158,10 @@ public class FrontControllerServlet extends HttpServlet {
 
 	private void redirigir(String ruta) throws IOException {
 		response.sendRedirect(request.getContextPath() + "/fc" + ruta);
+	}
+
+	private boolean esPost() {
+		return "POST".equals(request.getMethod());
 	}
 
 	private void notFound() {
