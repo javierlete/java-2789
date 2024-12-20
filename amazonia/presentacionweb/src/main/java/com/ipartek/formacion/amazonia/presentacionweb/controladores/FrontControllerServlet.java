@@ -48,7 +48,8 @@ public class FrontControllerServlet extends HttpServlet {
 		case "detalle" -> detalle();
 		case "login" -> login();
 		case "logout" -> logout();
-		default -> response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		case "admin" -> admin();
+		default -> notFound();
 		}
 	}
 
@@ -119,6 +120,24 @@ public class FrontControllerServlet extends HttpServlet {
 		redirigir("/");
 	}
 
+	private void admin() throws ServletException, IOException {
+		if (partes.length < 3) {
+			adminProductos();
+			return;
+		}
+
+		switch (partes[2]) {
+		default -> notFound();
+		}
+	}
+
+	private void adminProductos() throws ServletException, IOException {
+		var productos = adminNegocio.listarProductos();
+
+		request.setAttribute("productos", productos);
+		reenviar("/admin/productos.jsp");
+	}
+	
 	private void reenviar(String vista) throws ServletException, IOException {
 		request.getRequestDispatcher(VISTAS + vista).forward(request, response);
 	}
@@ -126,4 +145,9 @@ public class FrontControllerServlet extends HttpServlet {
 	private void redirigir(String ruta) throws IOException {
 		response.sendRedirect(request.getContextPath() + "/fc" + ruta);
 	}
+
+	private void notFound() {
+		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+	}
+	
 }
