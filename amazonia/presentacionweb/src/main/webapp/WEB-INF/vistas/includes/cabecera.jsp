@@ -14,6 +14,7 @@
 <title>Amazonia</title>
 <link rel="icon" href="imgs/cart4.svg">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.min.css" rel="stylesheet">
 
 <script src="js/bootstrap.bundle.min.js"></script>
 <c:if test="${login != null}">
