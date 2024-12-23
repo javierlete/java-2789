@@ -7,5 +7,7 @@ public interface AdminNegocio extends AnonimoNegocio {
 	Producto anadirProducto(Producto producto);
 
 	Producto modificarProducto(Producto producto);
+
+	void borrarProducto(Long id);
 	
 }

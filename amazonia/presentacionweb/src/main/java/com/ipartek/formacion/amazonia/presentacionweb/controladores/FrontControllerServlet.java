@@ -2,6 +2,7 @@ package com.ipartek.formacion.amazonia.presentacionweb.controladores;
 
 import static com.ipartek.formacion.amazonia.presentacionweb.controladores.Globales.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -184,8 +185,20 @@ public class FrontControllerServlet extends HttpServlet {
 		}
 	}
 
-	private void adminProductoBorrar() {
+	private void adminProductoBorrar() throws IOException {
+		String sId = request.getParameter("id");
+		
+		Long id = Long.parseLong(sId);
+		
+		adminNegocio.borrarProducto(id);
+		
+		String rutaImagenes = getServletContext().getRealPath("") + "/imgs/";
 
+		File ficheroBorrar = new File(rutaImagenes + id + ".jpg");
+		
+		ficheroBorrar.delete();
+		
+		redirigir("/admin/");
 	}
 
 	private void adminProductos() throws ServletException, IOException {

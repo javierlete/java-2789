@@ -17,4 +17,9 @@ public class AdminNegocioImpl extends AnonimoNegocioImpl implements AdminNegocio
 		return PRODUCTO_DAO.modificar(producto);
 	}
 
+	@Override
+	public void borrarProducto(Long id) {
+		PRODUCTO_DAO.borrar(id);
+	}
+
 }

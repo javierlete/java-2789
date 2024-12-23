@@ -50,6 +50,14 @@ public class ProductoJpaDao extends JpaDao implements ProductoDao {
 			return producto;
 		});
 	}
+
+	@Override
+	public void borrar(Long id) {
+		enTransaccion(em -> {
+			em.remove(em.find(Producto.class, id));
+			return null;
+		});
+	}
 	
 	
 
