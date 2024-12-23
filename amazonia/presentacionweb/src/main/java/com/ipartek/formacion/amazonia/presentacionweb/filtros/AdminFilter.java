@@ -29,7 +29,7 @@ public class AdminFilter extends HttpFilter implements Filter {
 		var usuario = (Usuario)session.getAttribute("usuario");
 
 		if (usuario == null || !usuario.isAdmin()) {
-			res.sendRedirect(req.getContextPath() + "/fc/login");
+			res.sendRedirect(req.getContextPath() + "/fc/login?error-login=No tienes privilegios para entrar");
 			return;
 		}
 

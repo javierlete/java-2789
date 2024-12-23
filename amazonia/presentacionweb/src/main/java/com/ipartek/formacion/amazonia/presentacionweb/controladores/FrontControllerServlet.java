@@ -96,6 +96,12 @@ public class FrontControllerServlet extends HttpServlet {
 	}
 
 	private void login() throws ServletException, IOException {
+		String error = request.getParameter("error-login");
+
+		if(error != null) {
+			request.setAttribute("errorLogin", error);
+		}
+		
 		if (esPost()) {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
@@ -111,10 +117,12 @@ public class FrontControllerServlet extends HttpServlet {
 				return;
 			} else {
 				request.setAttribute("usuario", usuario);
+				request.setAttribute("errorLogin", "Usuario o contraseña incorrectos");
 			}
 
 		}
 
+		// Atributo que marca a la cabecera para lanzar un JavaScript que visualice el modal de Login
 		request.setAttribute("login", "");
 
 		reenviar("/index.jsp");

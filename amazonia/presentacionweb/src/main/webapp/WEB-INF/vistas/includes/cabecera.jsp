@@ -66,9 +66,15 @@
 	</nav>
 
 	<!-- Modal -->
-	<div class="modal fade" id="login" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="login" tabindex="-1"
+		aria-labelledby="Login" aria-hidden="true">
 		<div class="modal-dialog">
+			<c:if test="${errorLogin != null}">
+				<div class="alert alert-danger alert-dismissible fade show"
+					role="alert">
+					${errorLogin}
+				</div>
+			</c:if>
 			<form action="fc/login" method="post" class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar
@@ -93,9 +99,6 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<c:if test="${requestScope.usuario != null}">
-						<div class="text-danger">Usuario o contraseña incorrectos</div>
-					</c:if>
 					<button type="submit" class="btn btn-primary">Iniciar
 						sesión</button>
 				</div>
