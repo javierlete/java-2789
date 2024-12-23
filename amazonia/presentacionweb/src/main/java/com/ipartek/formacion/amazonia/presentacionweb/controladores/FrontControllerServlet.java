@@ -160,11 +160,21 @@ public class FrontControllerServlet extends HttpServlet {
 			String descripcion = request.getParameter("descripcion");
 
 			Long id = sId.isBlank() ? null : Long.parseLong(sId);
-			BigDecimal precio = new BigDecimal(sPrecio);
+			BigDecimal precio = sPrecio.isBlank() ? null : new BigDecimal(sPrecio);
 
 			Producto producto = Producto.builder().id(id).nombre(nombre).precio(precio).url(url)
 					.descripcion(descripcion).build();
 
+			var errores = adminNegocio.validarProducto(producto);
+			
+			if(errores.size() > 0) {
+				request.setAttribute("errores", errores);
+				request.setAttribute("producto", producto);
+				
+				reenviar("/admin/producto.jsp");
+				return;
+			}
+			
 			Producto productoConfirmado;
 
 			if (producto.getId() == null) {
