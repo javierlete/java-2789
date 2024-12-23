@@ -2,6 +2,8 @@ package com.ipartek.formacion.amazonia.presentacionweb.filtros;
 
 import java.io.IOException;
 
+import com.ipartek.formacion.amazonia.entidades.Usuario;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,9 +25,10 @@ public class AdminFilter extends HttpFilter implements Filter {
 		var res = (HttpServletResponse) response;
 
 		var session = req.getSession();
-		var usuario = session.getAttribute("usuario");
+		
+		var usuario = (Usuario)session.getAttribute("usuario");
 
-		if (usuario == null) {
+		if (usuario == null || !usuario.isAdmin()) {
 			res.sendRedirect(req.getContextPath() + "/fc/login");
 			return;
 		}

@@ -41,7 +41,7 @@
 					<li class="nav-item"><a class="nav-link" href="index">Principal</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<c:if test="${sessionScope.usuario != null}">
+					<c:if test="${sessionScope.usuario.admin}">
 						<li class="nav-item"><a class="nav-link" href="fc/admin/">Administración</a></li>
 					</c:if>
 

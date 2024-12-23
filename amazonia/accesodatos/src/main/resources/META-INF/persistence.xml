@@ -5,6 +5,7 @@
 
     <persistence-unit name="com.ipartek.formacion.amazonia.entidades">
     	<class>com.ipartek.formacion.amazonia.entidades.Usuario</class>
+    	<class>com.ipartek.formacion.amazonia.entidades.Rol</class>
     	<class>com.ipartek.formacion.amazonia.entidades.Cliente</class>
     	<class>com.ipartek.formacion.amazonia.entidades.Factura</class>
     	<class>com.ipartek.formacion.amazonia.entidades.Factura$Linea</class>

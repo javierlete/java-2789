@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -46,6 +47,14 @@ public class Usuario {
 	@Size(max = 50)
 	private String nombre;
 	
+	@NotNull
+	@ManyToOne
+	private Rol rol;
+	
 	@OneToOne
 	private Cliente cliente;
+	
+	public boolean isAdmin() {
+		return "ADMIN".equals(rol.getNombre());
+	}
 }
