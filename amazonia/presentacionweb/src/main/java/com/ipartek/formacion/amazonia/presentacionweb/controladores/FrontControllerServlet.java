@@ -25,6 +25,8 @@ import lombok.extern.java.Log;
 @Log
 @WebServlet("/fc/*")
 public class FrontControllerServlet extends HttpServlet {
+	private static final String RUTA_IMGS = "/imgs/";
+
 	private static final long serialVersionUID = 1L;
 
 	private HttpServletRequest request;
@@ -172,7 +174,7 @@ public class FrontControllerServlet extends HttpServlet {
 			}
 
 			// https://www.baeldung.com/upload-file-servlet
-			String rutaImagenes = getServletContext().getRealPath("") + "/imgs/";
+			String rutaImagenes = obtenerRutaImagenes();
 
 			Part parteImagen = request.getPart("imagen");
 
@@ -198,17 +200,13 @@ public class FrontControllerServlet extends HttpServlet {
 
 	private void adminProductoBorrar() throws IOException {
 		String sId = request.getParameter("id");
-
+	
 		Long id = Long.parseLong(sId);
-
+	
 		adminNegocio.borrarProducto(id);
-
-		String rutaImagenes = getServletContext().getRealPath("") + "/imgs/";
-
-		File ficheroBorrar = new File(rutaImagenes + id + ".jpg");
-
-		ficheroBorrar.delete();
-
+	
+		borrarImagen(id);
+	
 		redirigir("/admin/");
 	}
 
@@ -218,6 +216,10 @@ public class FrontControllerServlet extends HttpServlet {
 		List<Long> ids = Arrays.stream(sIds).map(s -> Long.parseLong(s)).toList();
 
 		adminNegocio.borrarProductos(ids);
+
+		for(Long id: ids) {
+			borrarImagen(id);
+		}
 		
 		redirigir("/admin/");
 	}
@@ -243,6 +245,18 @@ public class FrontControllerServlet extends HttpServlet {
 
 	private void notFound() {
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+	}
+
+	private String obtenerRutaImagenes() {
+		return getServletContext().getRealPath(RUTA_IMGS);
+	}
+
+	private void borrarImagen(Long id) {
+		String rutaImagenes = obtenerRutaImagenes();
+	
+		File ficheroBorrar = new File(rutaImagenes + id + ".jpg");
+	
+		ficheroBorrar.delete();
 	}
 
 }
