@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 
 import com.ipartek.formacion.amazonia.entidades.Producto;
 import com.ipartek.formacion.amazonia.entidades.Usuario;
@@ -134,6 +135,7 @@ public class FrontControllerServlet extends HttpServlet {
 		switch (partes[2]) {
 		case "producto" -> adminProducto();
 		case "producto-borrar" -> adminProductoBorrar();
+		case "productos-borrar" -> adminProductosBorrar();
 		default -> notFound();
 		}
 	}
@@ -146,29 +148,30 @@ public class FrontControllerServlet extends HttpServlet {
 			String sPrecio = request.getParameter("precio");
 			String url = request.getParameter("url");
 			String descripcion = request.getParameter("descripcion");
-			
+
 			Long id = sId.isBlank() ? null : Long.parseLong(sId);
 			BigDecimal precio = new BigDecimal(sPrecio);
-			
-			Producto producto = Producto.builder().id(id).nombre(nombre).precio(precio).url(url).descripcion(descripcion).build();
+
+			Producto producto = Producto.builder().id(id).nombre(nombre).precio(precio).url(url)
+					.descripcion(descripcion).build();
 
 			Producto productoConfirmado;
-			
-			if(producto.getId() == null) {
+
+			if (producto.getId() == null) {
 				productoConfirmado = adminNegocio.anadirProducto(producto);
 			} else {
 				productoConfirmado = adminNegocio.modificarProducto(producto);
 			}
-			
+
 			// https://www.baeldung.com/upload-file-servlet
 			String rutaImagenes = getServletContext().getRealPath("") + "/imgs/";
 
 			Part parteImagen = request.getPart("imagen");
-			
-			if(!parteImagen.getSubmittedFileName().isBlank()) {
+
+			if (!parteImagen.getSubmittedFileName().isBlank()) {
 				parteImagen.write(rutaImagenes + productoConfirmado.getId() + ".jpg");
 			}
-			
+
 			redirigir("/admin");
 		} else {
 			// GET
@@ -187,16 +190,26 @@ public class FrontControllerServlet extends HttpServlet {
 
 	private void adminProductoBorrar() throws IOException {
 		String sId = request.getParameter("id");
-		
+
 		Long id = Long.parseLong(sId);
-		
+
 		adminNegocio.borrarProducto(id);
-		
+
 		String rutaImagenes = getServletContext().getRealPath("") + "/imgs/";
 
 		File ficheroBorrar = new File(rutaImagenes + id + ".jpg");
-		
+
 		ficheroBorrar.delete();
+
+		redirigir("/admin/");
+	}
+
+	private void adminProductosBorrar() throws IOException {
+		String[] sIds = request.getParameterValues("id");
+
+		List<Long> ids = Arrays.stream(sIds).map(s -> Long.parseLong(s)).toList();
+
+		adminNegocio.borrarProductos(ids);
 		
 		redirigir("/admin/");
 	}

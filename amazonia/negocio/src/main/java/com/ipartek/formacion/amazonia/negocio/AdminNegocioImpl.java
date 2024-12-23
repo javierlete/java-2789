@@ -1,5 +1,7 @@
 package com.ipartek.formacion.amazonia.negocio;
 
+import java.util.List;
+
 import com.ipartek.formacion.amazonia.accesodatos.ProductoDao;
 import com.ipartek.formacion.amazonia.entidades.Producto;
 import com.ipartek.formacion.amazonia.fabrica.Fabrica;
@@ -20,6 +22,11 @@ public class AdminNegocioImpl extends AnonimoNegocioImpl implements AdminNegocio
 	@Override
 	public void borrarProducto(Long id) {
 		PRODUCTO_DAO.borrar(id);
+	}
+
+	@Override
+	public void borrarProductos(List<Long> ids) {
+		PRODUCTO_DAO.borrar(ids);
 	}
 
 }

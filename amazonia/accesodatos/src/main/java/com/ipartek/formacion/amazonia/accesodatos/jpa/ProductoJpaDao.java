@@ -1,6 +1,7 @@
 package com.ipartek.formacion.amazonia.accesodatos.jpa;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.ipartek.formacion.amazonia.accesodatos.JpaDao;
 import com.ipartek.formacion.amazonia.accesodatos.ProductoDao;
@@ -28,7 +29,8 @@ public class ProductoJpaDao extends JpaDao implements ProductoDao {
 	public Producto obtenerPorUrl(String url) {
 		return enTransaccion(em -> {
 			try {
-				return em.createQuery("from Producto p where p.url=:url", Producto.class).setParameter("url", url).getSingleResult();
+				return em.createQuery("from Producto p where p.url=:url", Producto.class).setParameter("url", url)
+						.getSingleResult();
 			} catch (NoResultException e) {
 				return null;
 			}
@@ -58,7 +60,12 @@ public class ProductoJpaDao extends JpaDao implements ProductoDao {
 			return null;
 		});
 	}
-	
-	
 
+	@Override
+	public void borrar(List<Long> ids) {
+		enTransaccion(em -> {
+			em.createQuery("delete from Producto where id in :ids").setParameter("ids", ids).executeUpdate();
+			return null;
+		});
+	}
 }
