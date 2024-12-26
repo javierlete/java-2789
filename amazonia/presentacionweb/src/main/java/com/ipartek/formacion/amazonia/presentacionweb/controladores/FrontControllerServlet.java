@@ -140,21 +140,16 @@ public class FrontControllerServlet extends HttpServlet {
 	}
 
 	private void carrito() throws IOException, ServletException {
-		var carrito = (Carrito) session.getAttribute("carrito");
-		
-		if (carrito == null) {
-			carrito = new Carrito();
-
-			session.setAttribute("carrito", carrito);
-		}
 
 		if (partes.length >= 3) {
+
 			String sId = request.getParameter("id");
 
 			Long id = Long.parseLong(sId);
 
+			var carrito = (Carrito) session.getAttribute("carrito");
 			var producto = adminNegocio.detalleProducto(id);
-			
+
 			switch (partes[2]) {
 			case "anadir" -> carrito.agregarProducto(producto);
 			case "quitar" -> carrito.quitarProducto(producto);
