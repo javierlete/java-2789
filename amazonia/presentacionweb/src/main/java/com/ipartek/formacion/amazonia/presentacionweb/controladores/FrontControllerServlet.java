@@ -59,8 +59,19 @@ public class FrontControllerServlet extends HttpServlet {
 		case "logout" -> logout();
 		case "admin" -> admin();
 		case "carrito" -> carrito();
+		case "facturar" -> facturar();
 		default -> notFound();
 		}
+	}
+
+	private void facturar() throws ServletException, IOException {
+		var carrito = (Carrito) session.getAttribute("carrito");
+
+		var factura = usuarioNegocio.facturar(carrito);
+
+		request.setAttribute("factura", factura);
+		
+		reenviar("/factura.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -154,7 +165,7 @@ public class FrontControllerServlet extends HttpServlet {
 			case "anadir" -> carrito.agregarProducto(producto);
 			case "quitar" -> carrito.quitarProducto(producto);
 			}
-			
+
 			redirigir("/carrito");
 			return;
 		}

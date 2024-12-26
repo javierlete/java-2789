@@ -3,6 +3,7 @@ package com.ipartek.formacion.amazonia.entidades;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +22,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Builder
@@ -39,7 +42,7 @@ public class Factura {
 	@NotBlank
 	@Pattern(regexp = "\\d{4}/\\d{6}")
 	@Column(columnDefinition = "CHAR(11)", unique = true)
-	private String numeroFactura;
+	private String numero;
 
 	@Builder.Default
 	@NotNull
@@ -60,9 +63,17 @@ public class Factura {
 	@NotBlank
 	@Size(min = 2, max = 50)
 	private String nombre;
+	
+	@NotNull
+	@Min(0)
+	@Builder.Default
+	private BigDecimal iva = new BigDecimal("0.21");
 
 	@OneToMany(mappedBy = "factura")
-	private Collection<Linea> lineas;
+	@Builder.Default
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	private Collection<Linea> lineas = new HashSet<Linea>();
 
 	@Data
 	@Builder
@@ -80,7 +91,6 @@ public class Factura {
 		@ManyToOne
 		private Factura factura;
 		
-		@NotNull
 		@ManyToOne
 		private Producto producto;
 		
@@ -96,5 +106,22 @@ public class Factura {
 		@NotNull
 		@Min(0)
 		private Integer cantidad;
+		
+		public BigDecimal getTotal() {
+			return precio.multiply(new BigDecimal(cantidad));
+		}
+	}
+	
+	public BigDecimal getTotal() {
+		return lineas.stream().map(l -> l.getTotal())
+				.reduce((totalParcial, totalAcumulado) -> totalAcumulado.add(totalParcial)).orElse(BigDecimal.ZERO);
+	}
+
+	public BigDecimal getIva() {
+		return getTotal().multiply(iva);
+	}
+
+	public BigDecimal getTotalConIva() {
+		return getTotal().add(getIva());
 	}
 }

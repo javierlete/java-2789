@@ -2,7 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<table class="table">
+<div>
+	<p>${factura.numero}</p>
+	<p>${factura.fecha}</p>
+</div>
+
+<div>
+	<p>${factura.nif}</p>
+	<p>${factura.nombre}</p>
+</div>
+
+<table class="table table-bordered table-striped">
 	<thead>
 		<tr>
 			<th>Producto</th>
@@ -12,23 +22,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${sessionScope.carrito.lineas}" var="l">
+		<c:forEach items="${factura.lineas}" var="l">
 			<tr>
-				<td>${l.producto.nombre}</td>
+				<td>${l.nombre}</td>
 				<td class="text-end"><fmt:formatNumber type="currency"
-						value="${l.producto.precio}" /></td>
-				<td>
-					<div class="input-group ms-auto" style="width: 9rem">
-						<a href="fc/carrito/quitar?id=${l.producto.id}" class="btn btn-secondary">
-							<i class="bi bi-dash-lg"></i>
-						</a>
-						<input class="form-control text-end" type="number" readonly
-							min="1" value="${l.cantidad}">
-						<a href="fc/carrito/anadir?id=${l.producto.id}" class="btn btn-secondary">
-							<i class="bi bi-plus-lg"></i>
-						</a>
-					</div>
-				</td>
+						value="${l.precio}" /></td>
+				<td>${l.cantidad}</td>
 				<td class="text-end"><fmt:formatNumber type="currency"
 						value="${l.total}" /></td>
 			</tr>
@@ -52,12 +51,6 @@
 			<th class="text-end fw-bold">Total</th>
 			<td class="text-end fw-bold"><fmt:formatNumber type="currency"
 					value="${carrito.totalConIva}" /></td>
-		</tr>
-		<tr>
-			<td colspan="3"></td>
-			<td class="text-end fw-bold">
-				<a class="btn btn-primary" href="fc/facturar">Facturar</a>
-			</td>
 		</tr>
 	</tfoot>
 </table>
