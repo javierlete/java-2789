@@ -1,5 +1,6 @@
 package com.ipartek.formacion.amazonia.entidades;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -23,6 +24,10 @@ public class Carrito {
 	public static class Linea {
 		private Producto producto;
 		private Integer cantidad;
+		
+		public BigDecimal getTotal() {
+			return producto.getPrecio().multiply(new BigDecimal(cantidad));
+		}
 	}
 
 	public void agregarProducto(Producto producto) {
