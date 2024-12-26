@@ -12,6 +12,9 @@
 				<h5 class="card-title">${producto.nombre}</h5>
 				<div class="card-text">${producto.descripcion}</div>
 				<p class="card-text">
+					<a href="fc/carrito/anadir?id=${producto.id}" class="btn btn-primary">Añadir al carrito</a>
+				</p>
+				<p class="card-text">
 					<small class="text-body-secondary">
 						<fmt:formatNumber type="currency" value="${producto.precio}"/>
 					</small>

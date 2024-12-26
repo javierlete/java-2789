@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ipartek.formacion.amazonia.entidades.Carrito;
 import com.ipartek.formacion.amazonia.entidades.Producto;
 import com.ipartek.formacion.amazonia.entidades.Usuario;
 
@@ -57,6 +58,7 @@ public class FrontControllerServlet extends HttpServlet {
 		case "login" -> login();
 		case "logout" -> logout();
 		case "admin" -> admin();
+		case "carrito" -> carrito();
 		default -> notFound();
 		}
 	}
@@ -100,10 +102,10 @@ public class FrontControllerServlet extends HttpServlet {
 	private void login() throws ServletException, IOException {
 		String error = request.getParameter("error-login");
 
-		if(error != null) {
+		if (error != null) {
 			request.setAttribute("errorLogin", error);
 		}
-		
+
 		if (esPost()) {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
@@ -124,7 +126,8 @@ public class FrontControllerServlet extends HttpServlet {
 
 		}
 
-		// Atributo que marca a la cabecera para lanzar un JavaScript que visualice el modal de Login
+		// Atributo que marca a la cabecera para lanzar un JavaScript que visualice el
+		// modal de Login
 		request.setAttribute("login", "");
 
 		reenviar("/index.jsp");
@@ -134,6 +137,32 @@ public class FrontControllerServlet extends HttpServlet {
 		session.invalidate();
 
 		redirigir("/");
+	}
+
+	private void carrito() throws IOException, ServletException {
+		var carrito = (Carrito) session.getAttribute("carrito");
+
+		Producto producto = null;
+
+		if (partes.length >= 3 && "anadir".equals(partes[2])) {
+			String sId = request.getParameter("id");
+
+			Long id = Long.parseLong(sId);
+
+			producto = adminNegocio.detalleProducto(id);
+		}
+
+		if (carrito == null) {
+			carrito = new Carrito();
+
+			session.setAttribute("carrito", carrito);
+		}
+
+		if (partes.length >= 3 && "anadir".equals(partes[2])) {
+			carrito.agregarProducto(producto);
+		}
+
+		reenviar("/carrito.jsp");
 	}
 
 	private void admin() throws ServletException, IOException {
@@ -166,15 +195,15 @@ public class FrontControllerServlet extends HttpServlet {
 					.descripcion(descripcion).build();
 
 			var errores = adminNegocio.validarProducto(producto);
-			
-			if(errores.size() > 0) {
+
+			if (errores.size() > 0) {
 				request.setAttribute("errores", errores);
 				request.setAttribute("producto", producto);
-				
+
 				reenviar("/admin/producto.jsp");
 				return;
 			}
-			
+
 			Producto productoConfirmado;
 
 			if (producto.getId() == null) {
@@ -210,13 +239,13 @@ public class FrontControllerServlet extends HttpServlet {
 
 	private void adminProductoBorrar() throws IOException {
 		String sId = request.getParameter("id");
-	
+
 		Long id = Long.parseLong(sId);
-	
+
 		adminNegocio.borrarProducto(id);
-	
+
 		borrarImagen(id);
-	
+
 		redirigir("/admin/");
 	}
 
@@ -227,10 +256,10 @@ public class FrontControllerServlet extends HttpServlet {
 
 		adminNegocio.borrarProductos(ids);
 
-		for(Long id: ids) {
+		for (Long id : ids) {
 			borrarImagen(id);
 		}
-		
+
 		redirigir("/admin/");
 	}
 
@@ -263,9 +292,9 @@ public class FrontControllerServlet extends HttpServlet {
 
 	private void borrarImagen(Long id) {
 		String rutaImagenes = obtenerRutaImagenes();
-	
+
 		File ficheroBorrar = new File(rutaImagenes + id + ".jpg");
-	
+
 		ficheroBorrar.delete();
 	}
 
