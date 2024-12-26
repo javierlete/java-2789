@@ -43,15 +43,29 @@ public class Carrito {
 		}
 	}
 
+	public void quitarProducto(Producto producto) {
+		var resultados = lineas.stream().filter(l -> l.producto.equals(producto)).toList();
+
+		if (resultados.size() > 0) {
+			var linea = resultados.get(0);
+
+			if (linea.getCantidad() != 1) {
+				linea.setCantidad(linea.getCantidad() - 1);
+			} else {
+				lineas.remove(linea);
+			}
+		}
+	}
+
 	public BigDecimal getTotal() {
 		return lineas.stream().map(l -> l.getTotal())
 				.reduce((totalParcial, totalAcumulado) -> totalAcumulado.add(totalParcial)).orElse(BigDecimal.ZERO);
 	}
-	
+
 	public BigDecimal getIva() {
 		return getTotal().multiply(IVA);
 	}
-	
+
 	public BigDecimal getTotalConIva() {
 		return getTotal().add(getIva());
 	}

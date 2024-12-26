@@ -19,7 +19,7 @@
 						value="${l.producto.precio}" /></td>
 				<td>
 					<div class="input-group ms-auto" style="width: 9rem">
-						<a href="#" class="btn btn-secondary">
+						<a href="fc/carrito/quitar?id=${l.producto.id}" class="btn btn-secondary">
 							<i class="bi bi-dash-lg"></i>
 						</a>
 						<input class="form-control text-end" type="number" readonly
