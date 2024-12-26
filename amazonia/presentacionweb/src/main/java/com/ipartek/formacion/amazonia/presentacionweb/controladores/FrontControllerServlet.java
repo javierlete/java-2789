@@ -160,6 +160,9 @@ public class FrontControllerServlet extends HttpServlet {
 
 		if (partes.length >= 3 && "anadir".equals(partes[2])) {
 			carrito.agregarProducto(producto);
+			
+			redirigir("/carrito");
+			return;
 		}
 
 		reenviar("/carrito.jsp");
