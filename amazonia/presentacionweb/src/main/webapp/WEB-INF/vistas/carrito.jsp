@@ -7,6 +7,7 @@
 		<tr>
 			<th>Producto</th>
 			<th>Precio</th>
+			<th>Cantidad</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,6 +15,7 @@
 			<tr>
 				<td>${l.producto.nombre}</td>
 				<td>${l.producto.precio}</td>
+				<td>${l.cantidad}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -26,6 +26,13 @@ public class Carrito {
 	}
 
 	public void agregarProducto(Producto producto) {
-		lineas.add(Linea.builder().producto(producto).cantidad(1).build());
+		var resultados = lineas.stream().filter(l -> l.producto.equals(producto)).toList();
+
+		if(resultados.size() > 0) {
+			var linea = resultados.get(0);
+			linea.setCantidad(linea.getCantidad() + 1);
+		} else {
+			lineas.add(Linea.builder().producto(producto).cantidad(1).build());
+		}
 	}
 }
