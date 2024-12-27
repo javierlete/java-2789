@@ -20,7 +20,7 @@
 			<artifactId>negocio</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	
+
 		<!--
 		https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
@@ -46,7 +46,6 @@
 			<version>3.0.1</version>
 		</dependency>
 
-
 		<!--
 		https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api -->
 		<dependency>
@@ -55,6 +54,14 @@
 			<version>3.1.1</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.eclipse/yasson -->
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>yasson</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
 
 	</dependencies>
 
