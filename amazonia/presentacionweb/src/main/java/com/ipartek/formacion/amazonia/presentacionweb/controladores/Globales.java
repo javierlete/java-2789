@@ -7,9 +7,9 @@ import com.ipartek.formacion.amazonia.negocio.AnonimoNegocioImpl;
 import com.ipartek.formacion.amazonia.negocio.UsuarioNegocio;
 import com.ipartek.formacion.amazonia.negocio.UsuarioNegocioImpl;
 
-class Globales {
-	static final String VISTAS = "/WEB-INF/vistas";
-	static final AnonimoNegocio anonimoNegocio = new AnonimoNegocioImpl();
-	static final UsuarioNegocio usuarioNegocio = new UsuarioNegocioImpl();
-	static final AdminNegocio adminNegocio = new AdminNegocioImpl();
+public class Globales {
+	public static final String VISTAS = "/WEB-INF/vistas";
+	public static final AnonimoNegocio anonimoNegocio = new AnonimoNegocioImpl();
+	public static final UsuarioNegocio usuarioNegocio = new UsuarioNegocioImpl();
+	public static final AdminNegocio adminNegocio = new AdminNegocioImpl();
 }
