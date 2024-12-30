@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.amazonia.repositorios.ProductoRepository;
+import com.amazonia.servicios.AnonimoService;
 
 @SpringBootApplication
 public class AmazoniaspringApplication implements CommandLineRunner {
@@ -17,11 +18,16 @@ public class AmazoniaspringApplication implements CommandLineRunner {
 	@Autowired
 	private ProductoRepository repo;
 	
+	@Autowired
+	private AnonimoService anonimoService;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		// repo.save(Producto.builder().nombre("Prueba").precio(BigDecimal.ZERO).url("prueba").build());
 		
 		System.out.println(repo.findByUrl("prueba"));
+		
+		System.out.println(anonimoService.listarProductos());
 	}
 
 }
