@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Amazonia Spring</title>
-</head>
-<body>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>Amazonia Spring Detalle Producto</title>
 
-<h1>Detalle de producto</h1>
-
-<p th:text="${producto}">Producto</p>
-
-</body>
-</html>
+<main>
+	<p th:text="${producto}">Producto</p>
+</main>
