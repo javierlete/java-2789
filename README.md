@@ -17,3 +17,12 @@
 - Programación Orientada a Objetos
   - Ejercicios básicos: https://puntocomnoesunlenguaje.blogspot.com/p/blog-page.html
   - Proyecto más avanzado: https://puntocomnoesunlenguaje.blogspot.com/ 
+
+# Guías de Spring
+
+- MVC básico: https://spring.io/guides/gs/serving-web-content
+- Formularios: https://spring.io/guides/gs/handling-form-submission
+- Validación: https://spring.io/guides/gs/validating-form-input
+- JPA: https://spring.io/guides/gs/accessing-data-jpa
+- MySQL: https://spring.io/guides/gs/accessing-data-mysql
+- JDBC Template: https://spring.io/guides/gs/relational-data-access
