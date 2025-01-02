@@ -10,7 +10,7 @@ import com.amazonia.entidades.Producto;
 import com.amazonia.repositorios.ProductoRepository;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl extends AnonimoServiceImpl implements AdminService {
 	@Autowired
 	private ProductoRepository productoRepo;
 	
