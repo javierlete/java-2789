@@ -24,6 +24,7 @@ public class AmazoniaspringApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// repo.save(Producto.builder().nombre("Prueba").precio(BigDecimal.ZERO).url("prueba").build());
+		// repo.save(Producto.builder().nombre("Prueba2").precio(new BigDecimal("1234.12")).url("prueba2").descripcion("Otra prueba").build());
 		
 		System.out.println(repo.findByUrl("prueba"));
 		
