@@ -5,6 +5,8 @@
 <main>
 	<p th:text="${productos}">Productos</p>
 	<ul>
-		<li th:each="p : ${productos}" th:text="${p}">Producto 1</li>
+		<li th:each="p : ${productos}">
+			<a th:text="${p.nombre}" th:href="@{'/detalle/' + ${p.url}}" href="detalle.html">Producto 1</a>
+		</li>
 	</ul>
 </main>
