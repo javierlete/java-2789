@@ -9,7 +9,7 @@
 	<p th:text="${producto}">Datos de producto</p>
 
 	<form th:action="@{/admin/producto}" method="post"
-		action="productos.html" th:object="${producto}">
+		action="productos.html" th:object="${producto}" enctype="multipart/form-data">
 		<div>
 			<input placeholder="Id" th:field="*{id}">
 			<div th:errors="*{id}"></div>
@@ -27,6 +27,9 @@
 		<div>
 			<input placeholder="URL" th:field="*{url}">
 			<div th:errors="*{url}"></div>
+		</div>
+		<div>
+			<input type="file" name="fichero" accept="image/jpeg">
 		</div>
 		<div>
 			<textarea placeholder="Descripción" th:field="*{descripcion}"></textarea>
