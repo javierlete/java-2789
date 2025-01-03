@@ -26,3 +26,7 @@
 - JPA: https://spring.io/guides/gs/accessing-data-jpa
 - MySQL: https://spring.io/guides/gs/accessing-data-mysql
 - JDBC Template: https://spring.io/guides/gs/relational-data-access
+- Seguridad: https://spring.io/guides/gs/securing-web
+- Seguridad con JDBC: https://www.baeldung.com/spring-security-jdbc-authentication
+- Thymeleaf con seguridad: https://www.thymeleaf.org/doc/articles/springsecurity.html
+- Thymeleaf: https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html
