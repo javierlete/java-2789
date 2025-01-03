@@ -25,13 +25,14 @@ public class WebSecurityConfig {
 	  throws Exception {
 	    auth.jdbcAuthentication()
 	      .dataSource(dataSource)
-	      .withDefaultSchema()
-	      .withUser(User.withUsername("javier")
-	        .password("contra") //passwordEncoder().encode("contra"))
-	        .roles("ADMIN"))
-	      .withUser(User.withUsername("pepe")
-	    	.password("perez")
-	    	.roles("USER"));
+//	      .withDefaultSchema()
+//	      .withUser(User.withUsername("javier")
+//	        .password("contra") //passwordEncoder().encode("contra"))
+//	        .roles("ADMIN"))
+//	      .withUser(User.withUsername("pepe")
+//	    	.password("perez")
+//	    	.roles("USER"))
+	      ;
 	}
 
 	@Bean
