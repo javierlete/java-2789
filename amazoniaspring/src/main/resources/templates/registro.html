@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<title>Amazonia Spring Productos</title>
+
+<main>
+	<form th:action="@{/registro}" action="index.html" method="post" th:object="${usuario}">
+		<div>
+			<input th:field="*{nombre}" placeholder="Nombre">
+			<div th:errors="*{nombre}"></div>
+		</div>
+		<div>
+			<input th:field="*{email}" placeholder="Email">
+			<div th:errors="*{email}"></div>
+		</div>
+		<div>
+			<input th:field="*{password}" placeholder="Contraseña">
+			<div th:errors="*{password}"></div>
+		</div>
+		<button>Registrarse</button>
+		<div th:errors="*{rol}"></div>
+	</form>
+</main>
