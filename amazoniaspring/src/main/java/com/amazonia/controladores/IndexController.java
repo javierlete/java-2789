@@ -20,6 +20,11 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
 	@GetMapping("/detalle")
 	public String detallePorId(Long id, Model modelo) {
 		modelo.addAttribute("producto", anonimoService.detalleProducto(id));

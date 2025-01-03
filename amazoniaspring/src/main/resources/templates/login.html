@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<title>Amazonia Spring Productos</title>
+
+<main>
+	<form th:action="@{/login}" action="index.html" method="post">
+		<input name="username" placeholder="Usuario">
+		<input type="password" name="password" placeholder="Contraseña">
+		<button>Iniciar sesión</button>
+		
+		<div th:if="${param.error}">
+            Usuario o contraseña incorrectos
+        </div>
+        
+        <div th:if="${param.logout}">
+            Has cerrado la sesión
+        </div>
+	</form>
+</main>
