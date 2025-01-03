@@ -1,8 +1,11 @@
 package com.amazonia.servicios;
 
+import org.springframework.validation.annotation.Validated;
+
 import com.amazonia.entidades.Carrito;
 import com.amazonia.entidades.Producto;
 import com.amazonia.entidades.Usuario;
+import com.amazonia.entidades.gruposvalidacion.UsuarioRegistro;
 
 public interface AnonimoService {
 	default Usuario iniciarSesion(Usuario usuario) {
@@ -32,4 +35,6 @@ public interface AnonimoService {
 	default Producto detalleProducto(String url) {
 		throw new NegocioException("NO IMPLEMENTADO");
 	}
+
+	void registrarUsuario(@Validated(UsuarioRegistro.class) Usuario usuario);
 }
