@@ -18,6 +18,8 @@
 			</li>
 			<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}"
 				href="login.html">Iniciar sesión</a></li>
+			<li sec:authorize="!isAuthenticated()"><a th:href="@{/registro}"
+				href="registro.html">Registrarse</a></li>
 			<li sec:authorize="isAuthenticated()">
 				<form th:action="@{/logout}" method="post">
 					<button>Cerrar sesión</button>
