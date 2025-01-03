@@ -10,7 +10,7 @@ import com.amazonia.entidades.Factura;
 import com.amazonia.repositorios.FacturaRepository;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioService {
 
 	@Autowired
 	private FacturaRepository facturaRepo;
