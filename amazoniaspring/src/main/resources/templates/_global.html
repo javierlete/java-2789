@@ -8,6 +8,16 @@
 
 <h1>Amazonia Spring</h1>
 
+<nav>
+	<ul>
+		<li><a th:href="@{/login}" href="login.html">Iniciar sesión</a>
+		<li>
+			<form th:action="@{/logout}" method="post">
+				<button>Cerrar sesión</button>
+			</form>
+	</ul>
+</nav>
+
 <main th:replace="${contenido}">
 	CONTENIDO
 </main>
