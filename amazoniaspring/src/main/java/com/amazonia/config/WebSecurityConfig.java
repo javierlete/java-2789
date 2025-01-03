@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,14 +24,17 @@ public class WebSecurityConfig {
 	  throws Exception {
 	    auth.jdbcAuthentication()
 	      .dataSource(dataSource)
-//	      .withDefaultSchema()
-//	      .withUser(User.withUsername("javier")
-//	        .password("contra") //passwordEncoder().encode("contra"))
-//	        .roles("ADMIN"))
-//	      .withUser(User.withUsername("pepe")
-//	    	.password("perez")
-//	    	.roles("USER"))
-	      ;
+	      .usersByUsernameQuery("""
+	      		SELECT email,password,1 
+	    	    FROM usuarios 
+	    	    WHERE email = ?
+	    	    """)
+	      .authoritiesByUsernameQuery("""
+	      		SELECT u.email, CONCAT('ROLE_', r.nombre) 
+	      		FROM usuarios u 
+	      		JOIN roles r ON r.id = u.rol_id
+	      		WHERE u.email = ?
+	      		""");
 	}
 
 	@Bean
