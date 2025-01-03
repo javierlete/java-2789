@@ -12,7 +12,10 @@
 
 	<nav>
 		<ul>
-			<li sec:authorize="isAuthenticated()"><span th:remove="tag" sec:authentication="name">USUARIO</span></li>
+			<li sec:authorize="isAuthenticated()">
+				<span th:remove="tag" sec:authentication="name">USUARIO</span>
+				<span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+			</li>
 			<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}"
 				href="login.html">Iniciar sesión</a></li>
 			<li sec:authorize="isAuthenticated()">
