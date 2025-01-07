@@ -28,6 +28,8 @@ public class CarritoController {
 			var producto = anonimoService.detalleProducto(id);
 
 			carrito.agregarProducto(producto);
+			
+			return "redirect:/carrito";
 		}
 
 		return "carrito";
