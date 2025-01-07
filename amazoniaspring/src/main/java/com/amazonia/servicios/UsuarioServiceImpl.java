@@ -6,24 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amazonia.entidades.Carrito;
+import com.amazonia.entidades.Cliente;
 import com.amazonia.entidades.Factura;
+import com.amazonia.entidades.Usuario;
 import com.amazonia.repositorios.FacturaRepository;
+import com.amazonia.repositorios.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioService {
 
 	@Autowired
+	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
 	private FacturaRepository facturaRepo;
 	
 	@Override
-	public Factura facturar(Carrito carrito) {
+	public Factura facturar(Cliente cliente, Carrito carrito) {
 		Factura.FacturaBuilder fb = Factura.builder();
 		
 		fb.numero("2024/000001");
 		fb.fecha(LocalDate.now());
 		
-		fb.nif("12345678Z");
-		fb.nombre("Ejemplo Ejemplez");
+		fb.nif(cliente.getNif());
+		fb.nombre(cliente.getNombre());
 		
 		var factura = fb.build();
 		
@@ -33,6 +39,11 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 		});
 		
 		return facturaRepo.save(factura);
+	}
+
+	@Override
+	public Usuario obtenerPorEmail(String email) {
+		return usuarioRepo.findByEmail(email);
 	}
 
 }
