@@ -12,6 +12,8 @@
 
 	<nav>
 		<ul>
+			<li><a th:href="@{/}"
+				href="index.html">Principal</a></li>
 			<li sec:authorize="isAuthenticated()">
 				<span th:remove="tag" sec:authentication="name">USUARIO</span>
 				<span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>

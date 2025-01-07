@@ -4,10 +4,16 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+@Component
+@SessionScope
 
 @Data
 @Builder
