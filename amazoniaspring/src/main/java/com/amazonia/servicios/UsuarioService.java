@@ -14,4 +14,6 @@ public interface UsuarioService extends AnonimoService {
 	String obtenerUltimoNumeroFactura();
 	
 	String calcularNuevoNumeroFactura();
+
+	Factura obtenerFactura(String numero);
 }

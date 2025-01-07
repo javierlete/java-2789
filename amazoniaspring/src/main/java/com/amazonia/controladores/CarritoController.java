@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.amazonia.entidades.Carrito;
 import com.amazonia.servicios.AnonimoService;
@@ -41,8 +42,17 @@ public class CarritoController {
 		return "carrito";
 	}
 
-	@GetMapping("/factura")
-	public String factura(Principal principal, Model modelo) {
+	@GetMapping("/factura/{anyo}/{numero}")
+	public String factura(@PathVariable String anyo, @PathVariable String numero, Model modelo) {
+		var factura = usuarioService.obtenerFactura(anyo + "/" + numero);
+		
+		modelo.addAttribute("factura", factura);
+		
+		return "factura";
+	}
+	
+	@GetMapping("/facturar")
+	public String facturar(Principal principal, Model modelo) {
 		if (principal != null) {
 			var usuario = usuarioService.obtenerPorEmail(principal.getName());
 			
@@ -53,13 +63,13 @@ public class CarritoController {
 				
 				carrito.vaciar();
 				
-				modelo.addAttribute("factura", factura);
-				
-				return "factura";
+				return "redirect:/factura/" + factura.getNumero();
+			} else {
+				// TODO no hay cliente
 			}
 			
 		} else {
-			
+			// TODO No está logueado
 		}
 		
 		return "redirect:/";

@@ -97,4 +97,9 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 		return anyo + "/" + String.format("%06d", numero);
 	}
 
+	@Override
+	public Factura obtenerFactura(String numero) {
+		return facturaRepo.findByNumero(numero);
+	}
+
 }
