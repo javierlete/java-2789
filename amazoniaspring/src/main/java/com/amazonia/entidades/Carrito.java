@@ -75,4 +75,8 @@ public class Carrito {
 	public BigDecimal getTotalConIva() {
 		return getTotal().add(getIva());
 	}
+
+	public void vaciar() {
+		lineas.clear();
+	}
 }

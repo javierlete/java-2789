@@ -11,4 +11,7 @@ public interface UsuarioService extends AnonimoService {
 
 	Usuario obtenerPorEmail(String email);
 	
+	String obtenerUltimoNumeroFactura();
+	
+	String calcularNuevoNumeroFactura();
 }
