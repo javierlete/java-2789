@@ -98,8 +98,16 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 	}
 
 	@Override
-	public Factura obtenerFactura(String numero) {
-		return facturaRepo.findByNumero(numero);
+	public Factura obtenerFactura(String email, String numero) {
+		var factura = facturaRepo.findByNumero(numero);
+
+		var usuario = usuarioRepo.findByEmail(email);
+		
+		if(factura.getCliente().getId() != usuario.getCliente().getId()) {
+			throw new NegocioException("Usuario no propietario de la factura");
+		}
+		
+		return factura;
 	}
 
 }

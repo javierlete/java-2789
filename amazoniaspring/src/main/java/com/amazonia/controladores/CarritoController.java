@@ -43,8 +43,9 @@ public class CarritoController {
 	}
 
 	@GetMapping("/factura/{anyo}/{numero}")
-	public String factura(@PathVariable String anyo, @PathVariable String numero, Model modelo) {
-		var factura = usuarioService.obtenerFactura(anyo + "/" + numero);
+	public String factura(@PathVariable String anyo, @PathVariable String numero, Principal principal, Model modelo) {
+		var email = principal != null ? principal.getName() : null;
+		var factura = usuarioService.obtenerFactura(email, anyo + "/" + numero);
 		
 		modelo.addAttribute("factura", factura);
 		
