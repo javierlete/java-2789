@@ -8,4 +8,29 @@
 
 	<p th:text="${carrito}">Carrito</p>
 
+	<table>
+		<thead>
+			<tr>
+				<th>Producto</th>
+				<th>Precio unidad</th>
+				<th>Cantidad</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="linea: ${carrito.lineas}" th:object="${linea}">
+				<td th:text="*{producto.nombre}">Producto 1</td>
+				<td th:text="*{#numbers.formatCurrency(producto.precio)}">1234.12€</td>
+				<td th:text="*{cantidad}">3</td>
+				<td th:text="*{#numbers.formatCurrency(total)}">3456.12€</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3"></td>
+				<td th:text="${#numbers.formatCurrency(carrito.total)}">6789.45€</td>
+			</tr>
+		</tfoot>
+	</table>
+
 </main>
