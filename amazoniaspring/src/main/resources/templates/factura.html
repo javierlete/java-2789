@@ -4,9 +4,9 @@
 <title>Amazonia Spring Productos</title>
 
 <main>
-	<h1>Carrito</h1>
+	<h1>Factura</h1>
 
-	<p th:text="${carrito}">Carrito</p>
+	<p th:text="${factura}">Factura</p>
 
 	<table>
 		<thead>
@@ -18,9 +18,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="linea: ${carrito.lineas}" th:object="${linea}">
-				<td th:text="*{producto.nombre}">Producto 1</td>
-				<td th:text="*{#numbers.formatCurrency(producto.precio)}">1234.12€</td>
+			<tr th:each="linea: ${factura.lineas}" th:object="${linea}">
+				<td th:text="*{nombre}">Producto 1</td>
+				<td th:text="*{#numbers.formatCurrency(precio)}">1234.12€</td>
 				<td th:text="*{cantidad}">3</td>
 				<td th:text="*{#numbers.formatCurrency(total)}">3456.12€</td>
 			</tr>
@@ -28,7 +28,7 @@
 		<tfoot>
 			<tr>
 				<td colspan="3"></td>
-				<td th:text="${#numbers.formatCurrency(carrito.total)}">6789.45€</td>
+				<td th:text="${#numbers.formatCurrency(factura.total)}">6789.45€</td>
 			</tr>
 			<tr>
 				<td colspan="3"></td>

@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.amazonia.entidades.Carrito;
 import com.amazonia.servicios.AnonimoService;
+import com.amazonia.servicios.UsuarioService;
 
 @Controller
 public class CarritoController {
 	@Autowired
 	private AnonimoService anonimoService;
 
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@Autowired
 	private Carrito carrito;
 
@@ -33,5 +37,14 @@ public class CarritoController {
 		}
 
 		return "carrito";
+	}
+	
+	@GetMapping("/factura") 
+	public String factura(Model modelo) {
+		var factura = usuarioService.facturar(carrito);
+		
+		modelo.addAttribute("factura", factura);
+		
+		return "factura";
 	}
 }
