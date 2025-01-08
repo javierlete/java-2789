@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <title>Mensajes Ipartex</title>
 
 <main class="container">
@@ -8,7 +9,7 @@
 		<form th:action="@{/publicar}" method="post" action="index.html"
 			class="list-group-item list-group-item-action">
 			<div class="d-flex w-100 justify-content-between">
-				<h5 class="mb-1">Usuario</h5>
+				<h5 class="mb-1" sec:authentication="name">Usuario</h5>
 			</div>
 			<p class="mb-1">
 				<textarea class="form-control" name="texto"></textarea>

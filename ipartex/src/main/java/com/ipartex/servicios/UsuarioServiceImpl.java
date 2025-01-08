@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ipartex.entidades.Mensaje;
+import com.ipartex.entidades.Usuario;
 import com.ipartex.repositorios.MensajeRepository;
+import com.ipartex.repositorios.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioService {
@@ -12,9 +14,17 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 	@Autowired
 	private MensajeRepository mensajeRepository;
 	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
 	@Override
 	public Mensaje publicarMensaje(Mensaje mensaje) {
 		return mensajeRepository.save(mensaje);
+	}
+
+	@Override
+	public Usuario buscarPorEmail(String email) {
+		return usuarioRepository.findByEmail(email);
 	}
 
 }

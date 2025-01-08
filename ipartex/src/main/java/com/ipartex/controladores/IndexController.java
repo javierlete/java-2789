@@ -1,5 +1,7 @@
 package com.ipartex.controladores;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ipartex.entidades.Mensaje;
-import com.ipartex.entidades.Usuario;
 import com.ipartex.servicios.AnonimoService;
 import com.ipartex.servicios.UsuarioService;
 
@@ -29,12 +30,12 @@ public class IndexController {
 	}
 	
 	@PostMapping("/publicar")
-	public String publicarPost(String texto) {
+	public String publicarPost(String texto, Principal principal) {
 		if(texto == null || texto.isBlank()) {
 			return "index";
 		}
 		
-		var usuario = Usuario.builder().id(1L).build();
+		var usuario = usuarioService.buscarPorEmail(principal.getName());
 		var mensaje = Mensaje.builder().usuario(usuario).texto(texto).build(); 
 		
 		usuarioService.publicarMensaje(mensaje);
