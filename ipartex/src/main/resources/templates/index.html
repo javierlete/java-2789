@@ -6,7 +6,7 @@
 
 <main class="container">
 	<div class="list-group">
-		<form th:action="@{/publicar}" method="post" action="index.html"
+		<form sec:authorize="isAuthenticated()" th:action="@{/publicar}" method="post" action="index.html"
 			class="list-group-item list-group-item-action">
 			<div class="d-flex w-100 justify-content-between">
 				<h5 class="mb-1" sec:authentication="name">Usuario</h5>
