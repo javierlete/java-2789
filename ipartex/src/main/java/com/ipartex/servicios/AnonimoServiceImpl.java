@@ -16,7 +16,7 @@ public class AnonimoServiceImpl implements AnonimoService {
 	
 	@Override
 	public Iterable<Mensaje> listarMensajes() {
-		return mensajeRepository.findAll();
+		return mensajeRepository.findMensajesByOrderByFechaDesc();
 	}
 
 }
