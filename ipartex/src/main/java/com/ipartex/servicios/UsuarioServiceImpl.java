@@ -1,6 +1,7 @@
 package com.ipartex.servicios;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ipartex.entidades.Mensaje;
@@ -13,6 +14,9 @@ import jakarta.validation.Valid;
 @Service
 public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioService {
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private MensajeRepository mensajeRepository;
 	
@@ -31,6 +35,8 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 
 	@Override
 	public Usuario registrarUsuario(@Valid Usuario usuario) {
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+		
 		return usuarioRepository.save(usuario);
 	}
 
