@@ -8,6 +8,8 @@ import com.ipartex.entidades.Usuario;
 import com.ipartex.repositorios.MensajeRepository;
 import com.ipartex.repositorios.UsuarioRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioService {
 
@@ -25,6 +27,11 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 	@Override
 	public Usuario buscarPorEmail(String email) {
 		return usuarioRepository.findByEmail(email);
+	}
+
+	@Override
+	public Usuario registrarUsuario(@Valid Usuario usuario) {
+		return usuarioRepository.save(usuario);
 	}
 
 }

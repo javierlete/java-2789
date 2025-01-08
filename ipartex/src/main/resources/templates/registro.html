@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<title>Registro Ipartex</title>
+
+<main class="container">
+	<form th:action="@{/registrarse}" action="index.html" th:object="${usuario}" method="post">
+		<div class="row mb-3">
+			<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" th:classappend="${#fields.hasErrors('nombre')}? 'is-invalid'" th:field="*{nombre}">
+				<div class="invalid-feedback" th:errors="*{nombre}"></div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="email" class="col-sm-2 col-form-label">Email</label>
+			<div class="col-sm-10">
+				<input type="email" class="form-control" th:classappend="${#fields.hasErrors('email')}? 'is-invalid'" th:field="*{email}">
+				<div class="invalid-feedback" th:errors="*{email}"></div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" th:classappend="${#fields.hasErrors('password')}? 'is-invalid'" th:field="*{password}">
+				<div class="invalid-feedback" th:errors="*{password}"></div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Registrarse</button>
+	</form>
+</main>
