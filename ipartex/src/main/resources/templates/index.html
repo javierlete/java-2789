@@ -6,7 +6,8 @@
 
 <main class="container">
 	<div class="list-group">
-		<form sec:authorize="isAuthenticated()" th:action="@{/publicar}" method="post" action="index.html"
+		<form sec:authorize="isAuthenticated()" th:action="@{/publicar}"
+			method="post" action="index.html"
 			class="list-group-item list-group-item-action">
 			<div class="d-flex w-100 justify-content-between">
 				<h5 class="mb-1" sec:authentication="name">Usuario</h5>
@@ -20,13 +21,20 @@
 		</form>
 		<div th:each="mensaje: ${mensajes}" th:object="${mensaje}"
 			class="list-group-item list-group-item-action">
-			<div class="d-flex w-100 justify-content-between">
-				<h5 class="mb-1" th:text="*{usuario.nombre}">Usuario</h5>
-				<small th:text="*{tiempoVidaTexto}">48m</small>
+			<div class="row">
+				<div class="col-auto">
+					<img class="rounded-circle" src="https://picsum.photos/50/50" th:src="@{'/' + ${raizImagenes} + *{usuario.id} + '.jpg'}" width="50">
+				</div>
+				<div class="col">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1" th:text="*{usuario.nombre}">Usuario</h5>
+						<small th:text="*{tiempoVidaTexto}">48m</small>
+					</div>
+					<p class="mb-1" th:text="*{texto}">Some placeholder content in
+						a paragraph.</p>
+					<!-- <small>And some small print.</small> -->
+				</div>
 			</div>
-			<p class="mb-1" th:text="*{texto}">Some placeholder content in a
-				paragraph.</p>
-			<!-- <small>And some small print.</small> -->
 		</div>
 	</div>
 </main>

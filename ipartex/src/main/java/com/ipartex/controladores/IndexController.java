@@ -1,13 +1,17 @@
 package com.ipartex.controladores;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ipartex.entidades.Mensaje;
 import com.ipartex.entidades.Usuario;
@@ -24,11 +28,18 @@ public class IndexController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private String rutaRaiz;
+	
+	@Value("${rutas.imagenes}")
+	private String rutaImagenes;
+	
 	@GetMapping("/")
 	public String index(Model modelo) {
 		var mensajes = anonimoService.listarMensajes();
 		
 		modelo.addAttribute("mensajes", mensajes);
+		modelo.addAttribute("raizImagenes", rutaImagenes);
 		
 		return "index";
 	}
@@ -53,12 +64,16 @@ public class IndexController {
 	}
 	
 	@PostMapping("/registrarse")
-	public String registrarsePost(@Valid Usuario usuario, BindingResult bindingResult) {
+	public String registrarsePost(MultipartFile imagen, @Valid Usuario usuario, BindingResult bindingResult) throws IllegalStateException, IOException {
 		if(bindingResult.hasErrors()) {
 			return "registro";
 		}
 		
-		usuarioService.registrarUsuario(usuario);
+		var usuarioRegistrado = usuarioService.registrarUsuario(usuario);
+		
+		var ruta = rutaRaiz + rutaImagenes + usuarioRegistrado.getId() + ".jpg"; // fichero.getOriginalFilename();
+
+		imagen.transferTo(Paths.get(ruta));
 		
 		return "redirect:/login";
 	}
