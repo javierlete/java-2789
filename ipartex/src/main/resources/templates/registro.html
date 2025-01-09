@@ -14,6 +14,13 @@
 			</div>
 		</div>
 		<div class="row mb-3">
+			<label for="usuarioIpartex" class="col-sm-2 col-form-label">Usuario Ipartex</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" th:classappend="${#fields.hasErrors('usuarioIpartex')}? 'is-invalid'" th:field="*{usuarioIpartex}">
+				<div class="invalid-feedback" th:errors="*{usuarioIpartex}"></div>
+			</div>
+		</div>
+		<div class="row mb-3">
 			<label for="email" class="col-sm-2 col-form-label">Email</label>
 			<div class="col-sm-10">
 				<input type="email" class="form-control" th:classappend="${#fields.hasErrors('email')}? 'is-invalid'" th:field="*{email}">
@@ -33,6 +40,10 @@
 				<input type="file" class="form-control" name="imagen" accept="image/jpeg">
 			</div>
 		</div>
+		
+		<input class="d-none" autocomplete="username">
+		<input class="d-none" type="password" autocomplete="current-password">
+		
 		<button type="submit" class="btn btn-primary">Registrarse</button>
 	</form>
 </main>

@@ -27,7 +27,10 @@
 				</div>
 				<div class="col">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1" th:text="*{usuario.nombre}">Usuario</h5>
+						<h5 class="mb-1" >
+							<span th:text="*{usuario.nombre}">Usuario</span>
+							<small class="text-body-secondary" th:text="'@' + *{usuario.usuarioIpartex}">@usuario</small>
+						</h5>
 						<small th:text="*{tiempoVidaTexto}">48m</small>
 					</div>
 					<p class="mb-1" th:text="*{texto}">Some placeholder content in

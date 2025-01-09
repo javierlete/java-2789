@@ -31,6 +31,11 @@ public class Usuario {
 	private String nombre;
 	
 	@NotBlank
+	@Size(max = 20)
+	@Column(unique = true)
+	private String usuarioIpartex;
+	
+	@NotBlank
 	@Email
 	@Size(max = 50)
 	@Column(unique = true)
