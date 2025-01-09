@@ -35,7 +35,14 @@
 					</div>
 					<p class="mb-1" th:text="*{texto}">Some placeholder content in
 						a paragraph.</p>
-					<!-- <small>And some small print.</small> -->
+					<small>
+						<a th:href="@{/megusta(id=*{id})}" href="index.html"><i 
+							class="bi"
+							th:classappend="${mensaje.lesGusta.contains(usuarioLogueado)} ? 'bi-heart-fill' : 'bi-heart'"
+						></i></a>
+						
+						<span th:text="*{lesGusta.size()}">123</span>
+					</small>
 				</div>
 			</div>
 		</div>

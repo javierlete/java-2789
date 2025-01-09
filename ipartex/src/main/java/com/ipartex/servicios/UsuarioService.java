@@ -11,4 +11,6 @@ public interface UsuarioService extends AnonimoService {
 	Usuario buscarPorEmail(String email);
 
 	Usuario registrarUsuario(@Valid Usuario usuario);
+
+	void conmutarLeGusta(Long id, String email);
 }

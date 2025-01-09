@@ -35,11 +35,12 @@ public class IndexController {
 	private String rutaImagenes;
 	
 	@GetMapping("/")
-	public String index(Model modelo) {
+	public String index(Model modelo, Principal principal) {
 		var mensajes = anonimoService.listarMensajes();
 		
 		modelo.addAttribute("mensajes", mensajes);
 		modelo.addAttribute("raizImagenes", rutaImagenes);
+		modelo.addAttribute("usuarioLogueado", usuarioService.buscarPorEmail(principal.getName()));
 		
 		return "index";
 	}
@@ -81,5 +82,12 @@ public class IndexController {
 	@GetMapping("/login") 
 	public String login() {
 		return "login";
+	}
+	
+	@GetMapping("/megusta")
+	public String megusta(Principal principal, Long id) {
+		usuarioService.conmutarLeGusta(id, principal.getName());
+		
+		return "redirect:/";
 	}
 }
