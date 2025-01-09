@@ -88,6 +88,6 @@ public class IndexController {
 	public String megusta(Principal principal, Long id) {
 		usuarioService.conmutarLeGusta(id, principal.getName());
 		
-		return "redirect:/";
+		return "redirect:/#m" + id;
 	}
 }

@@ -19,7 +19,7 @@
 				<button class="btn btn-primary">Enviar</button>
 			</small>
 		</form>
-		<div th:each="mensaje: ${mensajes}" th:object="${mensaje}"
+		<div th:id="'m' + *{id}" th:each="mensaje: ${mensajes}" th:object="${mensaje}"
 			class="list-group-item list-group-item-action">
 			<div class="row">
 				<div class="col-auto">
