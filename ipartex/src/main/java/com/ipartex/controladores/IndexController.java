@@ -27,66 +27,72 @@ public class IndexController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private String rutaRaiz;
-	
+
 	@Value("${rutas.imagenes}")
 	private String rutaImagenes;
-	
+
 	@GetMapping("/")
 	public String index(Model modelo, Principal principal) {
 		var mensajes = anonimoService.listarMensajes();
-		
+
+		if (principal != null) {
+			modelo.addAttribute("usuarioLogueado", usuarioService.buscarPorEmail(principal.getName()));
+		}
+
 		modelo.addAttribute("mensajes", mensajes);
 		modelo.addAttribute("raizImagenes", rutaImagenes);
-		modelo.addAttribute("usuarioLogueado", usuarioService.buscarPorEmail(principal.getName()));
-		
+
 		return "index";
 	}
-	
+
 	@PostMapping("/publicar")
 	public String publicarPost(String texto, Principal principal) {
-		if(texto == null || texto.isBlank()) {
+		if (texto == null || texto.isBlank()) {
 			return "index";
 		}
-		
+
 		var usuario = usuarioService.buscarPorEmail(principal.getName());
-		var mensaje = Mensaje.builder().usuario(usuario).texto(texto).build(); 
-		
+		var mensaje = Mensaje.builder().usuario(usuario).texto(texto).build();
+
 		usuarioService.publicarMensaje(mensaje);
-		
+
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/registrarse")
 	public String registrarse(Usuario usuario) {
 		return "registro";
 	}
-	
+
 	@PostMapping("/registrarse")
-	public String registrarsePost(MultipartFile imagen, @Valid Usuario usuario, BindingResult bindingResult) throws IllegalStateException, IOException {
-		if(bindingResult.hasErrors()) {
+	public String registrarsePost(MultipartFile imagen, @Valid Usuario usuario, BindingResult bindingResult)
+			throws IllegalStateException, IOException {
+		if (bindingResult.hasErrors()) {
 			return "registro";
 		}
-		
+
 		var usuarioRegistrado = usuarioService.registrarUsuario(usuario);
-		
+
 		var ruta = rutaRaiz + rutaImagenes + usuarioRegistrado.getId() + ".jpg"; // fichero.getOriginalFilename();
 
 		imagen.transferTo(Paths.get(ruta));
-		
+
 		return "redirect:/login";
 	}
-	
-	@GetMapping("/login") 
+
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
+
 	@GetMapping("/megusta")
 	public String megusta(Principal principal, Long id) {
-		usuarioService.conmutarLeGusta(id, principal.getName());
+		if (principal != null) {
+			usuarioService.conmutarLeGusta(id, principal.getName());
+		}
 		
 		return "redirect:/#m" + id;
 	}
