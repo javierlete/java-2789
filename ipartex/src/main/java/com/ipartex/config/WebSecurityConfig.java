@@ -43,7 +43,7 @@ public class WebSecurityConfig {
 	// AUTORIZACIÓN
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
+		http.csrf(config -> config.disable())
 			.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/publicar").authenticated()
 				.anyRequest().permitAll()

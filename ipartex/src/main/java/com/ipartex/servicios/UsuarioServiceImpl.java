@@ -42,16 +42,25 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 
 	@Override
 	public void conmutarLeGusta(Long id, String email) {
-		System.out.println(id);
-		System.out.println(email);
+		System.out.println("ID: " + id);
+		System.out.println("EMAIL: " + email);
 
 		var usuario = usuarioRepository.findByEmail(email);
 
 		System.out.println(usuario);
 
 		if (mensajeRepository.comprobarMeGusta(id, email) == null) {
+			
 			var mensaje = mensajeRepository.findById(id).orElse(null);
 
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println(mensaje);
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			
 			mensaje.getLesGusta().add(usuario);
 
 			mensajeRepository.save(mensaje);
