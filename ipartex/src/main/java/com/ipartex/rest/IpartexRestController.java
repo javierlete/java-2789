@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.ipartex.dtos.MensajeDTO;
 import com.ipartex.entidades.Mensaje;
 import com.ipartex.entidades.Usuario;
+import com.ipartex.repositorios.MensajeRepository;
 import com.ipartex.servicios.UsuarioService;
 
 @RestController
@@ -21,6 +23,14 @@ import com.ipartex.servicios.UsuarioService;
 public class IpartexRestController {
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private MensajeRepository mensajeRepository;
+	
+	@GetMapping("/mensajes")
+	public Iterable<MensajeDTO> mensajes() {
+		return mensajeRepository.listarMensajes("gandalf@email.net");
+	}
 	
 	@GetMapping("/listar-mensajes")
 	public Iterable<Mensaje> listarMensajes() {
@@ -58,7 +68,8 @@ public class IpartexRestController {
 	}
 	
 	@PostMapping("/registrar-usuario")
-	public Usuario registrarUsuario(@RequestBody Usuario usuario) {
+	public Usuario registrarUsuario(@RequestBody Usuario usuario, String password) {
+		usuario.setPassword(password);
 		return usuarioService.registrarUsuario(usuario);
 	}
 }
