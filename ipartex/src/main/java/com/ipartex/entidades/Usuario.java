@@ -1,5 +1,7 @@
 package com.ipartex.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +43,7 @@ public class Usuario {
 	@Column(unique = true)
 	private String email;
 	
+	@JsonIgnore
 	@NotBlank
 	@Size(max = 100)
 	private String password;
