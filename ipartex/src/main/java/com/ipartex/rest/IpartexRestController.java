@@ -5,6 +5,7 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.ipartex.dtos.MensajeDTO;
 import com.ipartex.entidades.Mensaje;
 import com.ipartex.entidades.Usuario;
-import com.ipartex.repositorios.MensajeRepository;
 import com.ipartex.servicios.UsuarioService;
 
 @RestController
@@ -24,27 +24,24 @@ public class IpartexRestController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@Autowired
-	private MensajeRepository mensajeRepository;
-	
 	@GetMapping("/mensajes")
-	public Iterable<MensajeDTO> mensajes() {
-		return mensajeRepository.listarMensajes("gandalf@email.net");
+	public Iterable<MensajeDTO> listarMensajes(Principal principal) {
+		return usuarioService.listarMensajesDTO(principal.getName());
 	}
 	
-	@GetMapping("/listar-mensajes")
-	public Iterable<Mensaje> listarMensajes() {
-		return usuarioService.listarMensajes();
+	@GetMapping("/mensajes/{id}")
+	public Mensaje detalleMensaje(Long id) {
+		return usuarioService.detalleMensaje(id);
 	}
 	
-	@GetMapping("/buscar-por-email")
+	@GetMapping("/usuarios/buscar")
 	public Usuario buscarPorEmail(String email) {
 		return usuarioService.buscarPorEmail(email);
 	}
 	
-	@GetMapping("/megusta")
+	@GetMapping("/mensajes/{id}/megusta")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void conmutarLeGusta(Long id, Principal principal) {
+	public void conmutarLeGusta(@PathVariable Long id, Principal principal) {
 		System.out.println(id);
 		System.out.println(principal);
 		
@@ -55,7 +52,7 @@ public class IpartexRestController {
 		}
 	}
 	
-	@PostMapping("/publicar-mensaje")
+	@PostMapping("/mensajes")
 	public Mensaje publicarMensaje(String texto, Principal principal) {
 		if (texto == null || texto.isBlank()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No tenemos texto");
@@ -67,9 +64,14 @@ public class IpartexRestController {
 		return usuarioService.publicarMensaje(mensaje);
 	}
 	
-	@PostMapping("/registrar-usuario")
+	@PostMapping("/usuarios")
 	public Usuario registrarUsuario(@RequestBody Usuario usuario, String password) {
 		usuario.setPassword(password);
 		return usuarioService.registrarUsuario(usuario);
+	}
+	
+	@PostMapping("/mensajes/{id}/respuesta")
+	public Mensaje publicarRespuesta(@PathVariable Long id, String texto, Principal principal) {
+		return usuarioService.publicarRespuesta(id, texto, principal.getName());
 	}
 }

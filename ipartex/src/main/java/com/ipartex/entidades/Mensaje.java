@@ -18,7 +18,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Builder
@@ -47,9 +49,13 @@ public class Mensaje {
 	@ManyToOne
 	private Mensaje respuestaDe;
 
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "respuestaDe")
 	private Collection<Mensaje> respuestas;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@ManyToMany
 	private Collection<Usuario> lesGusta;
 	

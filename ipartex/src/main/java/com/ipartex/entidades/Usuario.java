@@ -17,7 +17,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Builder
@@ -51,6 +53,8 @@ public class Usuario {
 	@Size(max = 100)
 	private String password;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@OneToMany
 	private Collection<Mensaje> mensajes;
 }
