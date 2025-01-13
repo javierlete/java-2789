@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<body>
+	<div th:fragment="mensajeFrag (mensaje)" th:id="'m' + ${mensaje.id}"
+		th:object="${mensaje}" class="list-group-item list-group-item-action">
+		<div class="row">
+			<div class="col-auto">
+				<img class="rounded-circle" src="https://picsum.photos/50/50"
+					th:src="@{'/' + ${raizImagenes} + *{usuario.id} + '.jpg'}"
+					width="50">
+			</div>
+			<div class="col">
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1">
+						<span th:text="*{usuario.nombre}">Usuario</span> <small
+							class="text-body-secondary"
+							th:text="'@' + *{usuario.usuarioIpartex}">@usuario</small>
+					</h5>
+					<small th:text="*{tiempoVidaTexto}">48m</small>
+				</div>
+				<p class="mb-1" th:text="*{texto}">Some placeholder content in a
+					paragraph.</p>
+				<small> <a th:if="${usuarioLogueado != null}"
+					th:href="@{/megusta(id=*{id})}" href="index.html"><i class="bi"
+						th:classappend="${mensaje.lesGusta.contains(usuarioLogueado)} ? 'bi-heart-fill' : 'bi-heart'"></i></a>
+
+					<i th:if="${usuarioLogueado == null}" class="bi"
+					th:classappend="${mensaje.lesGusta.contains(usuarioLogueado)} ? 'bi-heart-fill' : 'bi-heart'"></i>
+
+					<span th:text="*{lesGusta.size()}">123</span> <a
+					th:href="@{/responder(id=*{id})}"
+					th:if="${usuarioLogueado != null}" href="responder.html"><i
+						class="bi bi-chat"></i></a> <span th:text="*{respuestas.size()}">1234</span>
+				</small>
+			</div>
+		</div>
+	</div>
+	
+	<form th:fragment="formularioFrag (accion, idMensaje)" sec:authorize="isAuthenticated()" th:action="${accion}"
+		method="post" action="index.html"
+		class="list-group-item list-group-item-action">
+		<input type="hidden" name="id" value="" th:value="${idMensaje}">
+		<div class="d-flex w-100 justify-content-between">
+			<h5 class="mb-1" sec:authentication="name">Usuario</h5>
+		</div>
+		<p class="mb-1">
+			<textarea class="form-control" name="texto"></textarea>
+		</p>
+		<small>
+			<button class="btn btn-primary">Enviar</button>
+		</small>
+	</form>
+</body>
+</html>
