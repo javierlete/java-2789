@@ -19,4 +19,9 @@ public class AnonimoServiceImpl implements AnonimoService {
 		return mensajeRepository.findMensajesByOrderByFechaDesc();
 	}
 
+	@Override
+	public Mensaje detalleMensaje(Long id) {
+		return mensajeRepository.findById(id).orElseThrow();
+	}
+
 }

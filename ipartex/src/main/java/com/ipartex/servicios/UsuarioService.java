@@ -7,6 +7,9 @@ import jakarta.validation.Valid;
 
 public interface UsuarioService extends AnonimoService {
 	Mensaje publicarMensaje(Mensaje mensaje);
+	Mensaje publicarMensaje(String email, String texto);
+
+	Mensaje publicarRespuesta(Long id, String texto, String name);
 
 	Usuario buscarPorEmail(String email);
 

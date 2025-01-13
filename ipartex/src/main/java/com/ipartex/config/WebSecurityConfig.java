@@ -45,7 +45,7 @@ public class WebSecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(config -> config.disable())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/publicar").authenticated()
+				.requestMatchers("/publicar", "/responder").authenticated()
 				.anyRequest().permitAll()
 			)
 			.formLogin((form) -> form

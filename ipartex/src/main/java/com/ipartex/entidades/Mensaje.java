@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,16 +37,22 @@ public class Mensaje {
 	private String texto;
 	
 	@NotNull
+	@Builder.Default
+	private LocalDateTime fecha = LocalDateTime.now();
+
+	@NotNull
 	@ManyToOne
 	private Usuario usuario;
+	
+	@ManyToOne
+	private Mensaje respuestaDe;
+
+	@OneToMany(mappedBy = "respuestaDe")
+	private Collection<Mensaje> respuestas;
 	
 	@ManyToMany
 	private Collection<Usuario> lesGusta;
 	
-	@NotNull
-	@Builder.Default
-	private LocalDateTime fecha = LocalDateTime.now();
-
 	public Duration getTiempoVida() {
 		return Duration.between(fecha, LocalDateTime.now());
 	}

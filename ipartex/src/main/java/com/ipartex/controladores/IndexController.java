@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ipartex.entidades.Mensaje;
 import com.ipartex.entidades.Usuario;
 import com.ipartex.servicios.AnonimoService;
 import com.ipartex.servicios.UsuarioService;
@@ -54,10 +53,7 @@ public class IndexController {
 			return "index";
 		}
 
-		var usuario = usuarioService.buscarPorEmail(principal.getName());
-		var mensaje = Mensaje.builder().usuario(usuario).texto(texto).build();
-
-		usuarioService.publicarMensaje(mensaje);
+		usuarioService.publicarMensaje(principal.getName(), texto);
 
 		return "redirect:/";
 	}
@@ -93,6 +89,28 @@ public class IndexController {
 		if (principal != null) {
 			usuarioService.conmutarLeGusta(id, principal.getName());
 		}
+
+		return "redirect:/#m" + id;
+	}
+
+	@GetMapping("/responder")
+	public String responder(Long id, Principal principal, Model modelo) {
+		if (principal != null) {
+			modelo.addAttribute("mensaje", anonimoService.detalleMensaje(id));
+			modelo.addAttribute("usuarioLogueado", usuarioService.buscarPorEmail(principal.getName()));
+			modelo.addAttribute("raizImagenes", rutaImagenes);
+		}
+		
+		return "responder";
+	}
+
+	@PostMapping("/responder")
+	public String responderPost(String texto, Long id, Principal principal) {
+		if (texto == null || texto.isBlank()) {
+			return "index";
+		}
+
+		usuarioService.publicarRespuesta(id, texto, principal.getName());
 		
 		return "redirect:/#m" + id;
 	}

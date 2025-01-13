@@ -1,5 +1,7 @@
 package com.ipartex.entidades;
 
+import java.util.Collection;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -47,4 +50,7 @@ public class Usuario {
 	@NotBlank
 	@Size(max = 100)
 	private String password;
+	
+	@OneToMany
+	private Collection<Mensaje> mensajes;
 }
