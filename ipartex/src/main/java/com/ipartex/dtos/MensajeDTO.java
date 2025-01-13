@@ -16,11 +16,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MensajeDTO {
 	private Long id;
+	private Long idUsuario;
 	private String nombreUsuario;
 	private String nombreUsuarioIpartex;
 	private String texto;
 	private Boolean leGusta;
 	private Integer numeroMeGustas;
+	private Integer numeroRespuestas;
 	
 	@JsonIgnore
 	private LocalDateTime fecha;
