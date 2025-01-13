@@ -33,10 +33,9 @@
 						<i th:if="${usuarioLogueado == null}" class="bi"
 						th:classappend="${mensaje.lesGusta.contains(usuarioLogueado)} ? 'bi-heart-fill' : 'bi-heart'"></i>
 
-						<span th:text="*{lesGusta.size()}">123</span> <a
-						th:href="@{/responder(id=*{id})}"
-						th:if="${usuarioLogueado != null}" href="index.html"><i
-							class="fs-5 bi bi-reply"></i></a>
+						<span th:text="*{lesGusta.size()}">123</span>
+						
+						<a th:href="@{/responder(id=*{id})}" th:if="${usuarioLogueado != null}" href="responder.html"><i class="bi bi-chat"></i></a> <span th:text="*{respuestas.size()}">1234</span>
 					</small>
 				</div>
 			</div>
@@ -56,4 +55,41 @@
 			<button class="btn btn-primary">Enviar</button>
 		</small>
 	</form>
+	
+	<div class="list-group">
+		<div th:id="'m' + *{id}" th:each="mensaje: ${mensaje.respuestas}" th:object="${mensaje}"
+			class="list-group-item list-group-item-action">
+			<div class="row">
+				<div class="col-auto">
+					<img class="rounded-circle" src="https://picsum.photos/50/50"
+						th:src="@{'/' + ${raizImagenes} + *{usuario.id} + '.jpg'}"
+						width="50">
+				</div>
+				<div class="col">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">
+							<span th:text="*{usuario.nombre}">Usuario</span> <small
+								class="text-body-secondary"
+								th:text="'@' + *{usuario.usuarioIpartex}">@usuario</small>
+						</h5>
+						<small th:text="*{tiempoVidaTexto}">48m</small>
+					</div>
+					<p class="mb-1" th:text="*{texto}">Some placeholder content in
+						a paragraph.</p>
+					<small> <a th:if="${usuarioLogueado != null}"
+						th:href="@{/megusta(id=*{id})}" href="index.html"><i
+							class="bi"
+							th:classappend="${mensaje.lesGusta.contains(usuarioLogueado)} ? 'bi-heart-fill' : 'bi-heart'"></i></a>
+
+						<i th:if="${usuarioLogueado == null}" class="bi"
+						th:classappend="${mensaje.lesGusta.contains(usuarioLogueado)} ? 'bi-heart-fill' : 'bi-heart'"></i>
+
+						<span th:text="*{lesGusta.size()}">123</span> 
+
+<a th:href="@{/responder(id=*{id})}" th:if="${usuarioLogueado != null}" href="responder.html"><i class="bi bi-chat"></i></a> <span th:text="*{respuestas.size()}">1234</span>
+					</small>
+				</div>
+			</div>
+		</div>
+	</div>
 </main>

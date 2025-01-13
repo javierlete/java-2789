@@ -47,7 +47,7 @@
 
 						<span th:text="*{lesGusta.size()}">123</span>
 						
-						<a th:href="@{/responder(id=*{id})}" th:if="${usuarioLogueado != null}" href="responder.html"><i class="fs-5 bi bi-reply"></i></a>
+						<a th:href="@{/responder(id=*{id})}" th:if="${usuarioLogueado != null}" href="responder.html"><i class="bi bi-chat"></i></a> <span th:text="*{respuestas.size()}">1234</span>
 					</small>
 				</div>
 			</div>
