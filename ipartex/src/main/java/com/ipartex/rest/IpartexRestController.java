@@ -78,8 +78,21 @@ public class IpartexRestController {
 		return usuarioService.registrarUsuario(usuario);
 	}
 
-	@PostMapping("/mensajes/{id}/respuesta")
+	@GetMapping("/mensajes/{id}/respuestas")
+	public Iterable<MensajeDTO> respuestas(@PathVariable Long id, Principal principal) {
+		if(principal == null) {
+			return usuarioService.respuestasDTO(id, null);
+		} else {
+			return usuarioService.respuestasDTO(id, principal.getName());
+		}
+	}
+	
+	@PostMapping("/mensajes/{id}/respuestas")
 	public Mensaje publicarRespuesta(@PathVariable Long id, String texto, Principal principal) {
+		System.out.println(id);
+		System.out.println(texto);
+		System.out.println(principal.getName());
+		
 		return usuarioService.publicarRespuesta(id, texto, principal.getName());
 	}
 }

@@ -11,4 +11,6 @@ public interface AnonimoService {
 	Mensaje detalleMensaje(Long id);
 
 	MensajeDTO detalleMensajeDTO(Long id, String email);
+	
+	Iterable<MensajeDTO> respuestasDTO(Long id, String email);
 }

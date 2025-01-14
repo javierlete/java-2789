@@ -4,7 +4,7 @@
 const URL = '/api/';
 const URL_MENSAJES = URL + 'mensajes';
 
-let vistaMensajes, vistaRespuestas, mensajesForm;
+let vistaMensajes, vistaRespuestas, mensajesForm, respuestasForm;
 
 // Esperamos a la carga de todo el documento en el DOM
 window.addEventListener('DOMContentLoaded', domCargado);
@@ -19,6 +19,12 @@ function domCargado() {
 
 	// Enlazamos el evento de envío de mensaje
 	mensajesForm.addEventListener('submit', envioMensaje);
+
+	// Buscamos el formulario de respuestas
+	respuestasForm = document.querySelector('#vista-respuestas form');
+
+	// Enlazamos el evento de envío de respuesta
+	respuestasForm.addEventListener('submit', envioRespuesta);
 
 	// Refrescamos lista de mensajes
 	refrescarLista();
@@ -74,13 +80,36 @@ async function envioMensaje(evento) {
 	}
 }
 
-async function refrescarLista() {
+async function envioRespuesta(evento) {
+	// Evita que se envíe el formulario al action
+	evento.preventDefault();
+
+	const id = respuestasForm.id.value;
+	const texto = respuestasForm.texto.value;
+
+	const respuesta = await fetch(`${URL_MENSAJES}/${id}/respuestas?&texto=${texto}`, { method: 'POST' });
+
+	if (respuesta.ok) {
+		const mensaje = await respuesta.json();
+
+		console.log(JSON.stringify(mensaje));
+		
+		respuestasForm.reset();
+		
+		refrescarLista(`${URL_MENSAJES}/${id}/respuestas`, '#respuestas');
+	} else {
+		alert('Error');
+	}
+}
+
+
+async function refrescarLista(url = URL_MENSAJES, selector = '#mensajes') {
 	// Llamada a servicio REST
-	const respuesta = await fetch(URL_MENSAJES);
+	const respuesta = await fetch(url);
 	const mensajes = await respuesta.json();
 
 	// Buscamos el elemento raíz al que colgar cada uno de los elementos
-	const divPadre = document.querySelector('#mensajes');
+	const divPadre = document.querySelector(selector);
 	
 	divPadre.innerHTML = '';
 	
@@ -140,4 +169,8 @@ async function mostrarRespuestas(id) {
 	document.querySelector('#vista-respuestas small>a:first-of-type i').className = mensaje.leGusta ? 'bi bi-heart-fill' : 'bi bi-heart';
 	document.querySelector('#vista-respuestas small>span:first-of-type').innerText = mensaje.numeroMeGustas;
 	document.querySelector('#vista-respuestas small>span:last-of-type').innerText = mensaje.numeroRespuestas;
+
+	document.querySelector('#vista-respuestas input[name=id]').value = mensaje.id;
+	
+	refrescarLista(`${URL_MENSAJES}/${id}/respuestas`, '#respuestas');
 }
