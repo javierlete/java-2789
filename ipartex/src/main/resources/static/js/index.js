@@ -4,13 +4,16 @@
 const URL = '/api/';
 const URL_MENSAJES = URL + 'mensajes';
 
-let mensajesForm;
+let vistaMensajes, vistaRespuestas, mensajesForm;
 
 // Esperamos a la carga de todo el documento en el DOM
 window.addEventListener('DOMContentLoaded', domCargado);
 
 // Código a ejecutar cuando el DOM esté cargado
 function domCargado() {
+	vistaMensajes = document.querySelector('#vista-mensajes');
+	vistaRespuestas = document.querySelector('#vista-respuestas');
+	
 	// Buscamos el formulario de mensajes
 	mensajesForm = document.querySelector('#vista-mensajes form');
 
@@ -110,7 +113,7 @@ async function refrescarLista() {
 							<a href="javascript:megusta(${mensaje.id})"><i class="bi bi-heart${mensaje.leGusta ? '-fill' : ''}"></i></a>
 
 							<span>${mensaje.numeroMeGustas}</span> <a
-							href="#"><i
+							href="javascript:mostrarRespuestas(${mensaje.id})"><i
 								class="bi bi-chat"></i></a> <span>${mensaje.numeroRespuestas}</span>
 						</small>
 					</div>
@@ -120,4 +123,21 @@ async function refrescarLista() {
 		// Colgamos el elemento recién creado del UL
 		divPadre.appendChild(div);
 	}
+}
+
+async function mostrarRespuestas(id) {
+	vistaMensajes.style.display = 'none';
+	vistaRespuestas.style.display = 'block';
+	
+	const respuesta = await fetch(`${URL_MENSAJES}/${id}`);
+	const mensaje = await respuesta.json();
+	
+	document.querySelector('#vista-respuestas img').src = `/imgs/${mensaje.idUsuario}.jpg`	
+	document.querySelector('#vista-respuestas h5 > span').innerText = mensaje.nombreUsuario;
+	document.querySelector('#vista-respuestas h5 > small').innerText = '@' + mensaje.nombreUsuarioIpartex;
+	document.querySelector('#vista-respuestas h5 ~ small').innerText = mensaje.tiempoVidaTexto;
+	document.querySelector('#vista-respuestas p').innerText = mensaje.texto;
+	document.querySelector('#vista-respuestas small>a:first-of-type i').className = mensaje.leGusta ? 'bi bi-heart-fill' : 'bi bi-heart';
+	document.querySelector('#vista-respuestas small>span:first-of-type').innerText = mensaje.numeroMeGustas;
+	document.querySelector('#vista-respuestas small>span:last-of-type').innerText = mensaje.numeroRespuestas;
 }

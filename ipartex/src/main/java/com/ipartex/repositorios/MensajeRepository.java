@@ -21,4 +21,7 @@ public interface MensajeRepository extends CrudRepository<Mensaje, Long> {
 	Iterable<MensajeDTO> listarMensajes(@Param("usuario") Usuario usuario);
 
 	Iterable<Mensaje> findMensajesByRespuestaDeIsNullOrderByFechaDesc();
+
+	@Query("select new com.ipartex.dtos.MensajeDTO(m.id, m.usuario.id, m.usuario.nombre, m.usuario.usuarioIpartex, m.texto, :usuario member of m.lesGusta, size(m.lesGusta), size(m.respuestas), m.fecha) from Mensaje m where m.id = :id")
+	MensajeDTO buscarPorId(@Param("id") Long id, @Param("usuario") Usuario usuario);
 }

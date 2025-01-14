@@ -34,8 +34,12 @@ public class IpartexRestController {
 	}
 
 	@GetMapping("/mensajes/{id}")
-	public Mensaje detalleMensaje(Long id) {
-		return usuarioService.detalleMensaje(id);
+	public MensajeDTO detalleMensaje(@PathVariable Long id, Principal principal) {
+		if (principal == null) {
+			return usuarioService.detalleMensajeDTO(id, null);
+		} else {
+			return usuarioService.detalleMensajeDTO(id, principal.getName());
+		}
 	}
 
 	@GetMapping("/usuarios/buscar")

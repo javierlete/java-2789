@@ -10,4 +10,5 @@ public interface AnonimoService {
 
 	Mensaje detalleMensaje(Long id);
 
+	MensajeDTO detalleMensajeDTO(Long id, String email);
 }

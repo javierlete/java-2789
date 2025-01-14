@@ -35,4 +35,10 @@ public class AnonimoServiceImpl implements AnonimoService {
 		return mensajeRepository.findById(id).orElseThrow();
 	}
 
+	@Override
+	public MensajeDTO detalleMensajeDTO(Long id, String email) {
+		var usuario = usuarioRepository.findByEmail(email);
+		return mensajeRepository.buscarPorId(id, usuario);
+	}
+
 }

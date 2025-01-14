@@ -47,6 +47,49 @@
 	<div class="mb-3"></div>
 
 	<main class="container">
+		<section id="vista-respuestas" style="display: none">
+			<div class="list-group">
+				<div class="list-group-item list-group-item-action">
+					<div class="row">
+						<div class="col-auto">
+							<img class="rounded-circle" src="/imgs/${mensaje.idUsuario}.jpg"
+								width="50">
+						</div>
+						<div class="col">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">
+									<span>${mensaje.nombreUsuario}</span> <small
+										class="text-body-secondary">@${mensaje.nombreUsuarioIpartex}</small>
+								</h5>
+								<small>${mensaje.tiempoVidaTexto}</small>
+							</div>
+							<p class="mb-1">${mensaje.texto}</p>
+							<small> <a href="javascript:megusta(${mensaje.id})"><i
+									class="bi bi-heart${mensaje.leGusta ? '-fill' : ''}"></i></a> <span>${mensaje.numeroMeGustas}</span>
+								<a href="javascript:mostrarRespuestas(${mensaje.id})"><i
+									class="bi bi-chat"></i></a> <span>${mensaje.numeroRespuestas}</span>
+							</small>
+						</div>
+					</div>
+				</div>
+				<form class="list-group-item list-group-item-action">
+					<input type="hidden" name="id" value="">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">Usuario</h5>
+					</div>
+					<p class="mb-1">
+						<textarea class="form-control" name="texto"></textarea>
+					</p>
+					<small>
+						<button class="btn btn-primary">Enviar</button>
+					</small>
+				</form>
+
+				<div id="respuestas"></div>
+			</div>
+
+		</section>
+
 		<section id="vista-mensajes">
 			<div class="list-group">
 				<form class="list-group-item list-group-item-action">
@@ -65,6 +108,7 @@
 				<div id="mensajes"></div>
 			</div>
 		</section>
+
 	</main>
 
 	<div class="mt-5 pt-5"></div>
