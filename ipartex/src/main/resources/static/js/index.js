@@ -21,7 +21,7 @@ async function cargado() {
 		const div = document.createElement('div');
 
 		// Le ponemos ciertos atributos
-		div.id = mensaje.id;
+		div.id = 'm' + mensaje.id;
 		div.className = 'list-group-item list-group-item-action';
 
 		// Lo rellenamos con los datos en su HTML interno
@@ -42,7 +42,7 @@ async function cargado() {
 				</div>
 				<p class="mb-1">${mensaje.texto}</p>
 				<small> 
-					<a href="#"><i class="bi bi-heart${mensaje.leGusta ? '-fill' : ''}"></i></a>
+					<a href="javascript:megusta(${mensaje.id})"><i class="bi bi-heart${mensaje.leGusta ? '-fill' : ''}"></i></a>
 
 					<span>${mensaje.numeroMeGustas}</span> <a
 					href="#"><i
@@ -54,5 +54,34 @@ async function cargado() {
 
 		// Colgamos el elemento recién creado del UL
 		divPadre.appendChild(div);
+	}
+}
+
+async function megusta(id) {
+	const respuesta = await fetch(`${URL_MENSAJES}/${id}/megusta`);
+
+	if (respuesta.ok) {
+		
+		const a = document.querySelector(`#m${id} a:first-of-type`);
+		const i = a.querySelector('i');
+		const span = a.nextElementSibling;
+
+		let numeroMeGustas = +span.innerText;
+		
+		if (i.classList.contains('bi-heart')) {
+			i.classList.remove('bi-heart');
+			i.classList.add('bi-heart-fill');
+			
+			numeroMeGustas++;
+		} else {
+			i.classList.add('bi-heart');
+			i.classList.remove('bi-heart-fill');
+			
+			numeroMeGustas--;
+		}
+		
+		span.innerText = numeroMeGustas;
+	} else {
+		alert('Tienes que estar logueado para dar me gusta');
 	}
 }
